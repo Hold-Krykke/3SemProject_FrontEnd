@@ -27,8 +27,9 @@ assignees: ''
 -
 
 ### TASKS
-- [ ] test´
+- [ ] test
 - [ ] Add Tasks here
+  - [x] Nested completed task
 
 
 **Is your user story related to a problem? Please describe.**
