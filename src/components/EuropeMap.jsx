@@ -39,9 +39,14 @@ const EuropeMap = () => {
         previousTarget = event.target;
         event.target.style =
           "fill:#29B6F6;stroke:#ffffff;stroke-width:0.11153841;stroke-miterlimit:4;stroke-dasharray:none";
-        //output.innerHTML = "Selected country";
+
+        //Part that fetches country name and displays it
         let targetID = event.target.id;
         console.log(targetID);
+        if (targetID === "svg2") {
+          output.innerHTML = "";
+          return;
+        }
         if (targetID.length > 2) targetID = targetID.slice(0,2);
         const promise = facade.getCountryNameByAlpha2(targetID);
         promise
