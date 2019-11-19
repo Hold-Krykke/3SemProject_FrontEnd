@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "../App.css";
 import SVGMap from "../svg_files/Europe.js";
+import facade from "../apiFacade.js";
 
 /**
  * To make dangerouslySetInnerHTML work we have to insert an object with
@@ -24,10 +25,8 @@ function createMarkup() {
  * that lets the user visually "choose" a country.
  */
 const EuropeMap = () => {
-
   useEffect(() => {
     function setupCountryChooser() {
-
       var output = document.getElementById("outputCountry");
       var mainSVG = document.getElementById("svg2");
       var previousTarget = "";
@@ -40,7 +39,25 @@ const EuropeMap = () => {
         previousTarget = event.target;
         event.target.style =
           "fill:#29B6F6;stroke:#ffffff;stroke-width:0.11153841;stroke-miterlimit:4;stroke-dasharray:none";
-        output.innerHTML = "Selected country";
+        //output.innerHTML = "Selected country";
+        let targetID = event.target.id;
+        console.log(targetID);
+        if (targetID.length > 2) targetID = targetID.slice(0,2);
+        const promise = facade.getCountryNameByAlpha2(targetID);
+        promise
+          .then(data => {
+            output.innerHTML = data.Countryname;
+          })
+          .catch(err => {
+            if (err.status) {
+              err.fullError.then(
+                err => (console.log(err))
+              );
+            } else {
+              console.log("Network error");
+              output.innerHTML = "Network error";
+            }
+          });
       });
     }
     setupCountryChooser();
