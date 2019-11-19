@@ -44,7 +44,7 @@ const EuropeMap = () => {
         let targetID = event.target.id;
         console.log(targetID);
         if (targetID === "svg2") {
-          output.innerHTML = "";
+          output.innerHTML = "---";
           return;
         }
         if (targetID.length > 2) targetID = targetID.slice(0,2);
