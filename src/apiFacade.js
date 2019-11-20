@@ -1,9 +1,9 @@
-import { localURL } from "./settings.js";
+import { onlineURL } from "./settings.js";
 
 function apiFacade() {
 
   const getCountryNameByAlpha2 = (alpha2) => {
-    return fetch(localURL + "countryname/" + alpha2).then(handleHttpErrors);
+    return fetch(onlineURL + "countryname/" + alpha2).then(handleHttpErrors);
   };
 
   function handleHttpErrors(res) {
