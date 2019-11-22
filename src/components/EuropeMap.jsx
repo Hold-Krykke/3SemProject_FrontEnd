@@ -33,14 +33,19 @@ const EuropeMap = () => {
       let England = mainSVG.querySelector("#gb-gbn");
       let N_Ireland = mainSVG.querySelector("#gb-nir");
 
-      let highlightStyle = "fill:#29B6F6;stroke:#ffffff;stroke-width:0.11153841;stroke-miterlimit:4;stroke-dasharray:none";
-      let standardStyle = "fill:#c0c0c0;stroke:#ffffff;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none";
+      let highlightStyle =
+        "fill:#29B6F6;stroke:#ffffff;stroke-width:0.11153841;stroke-miterlimit:4;stroke-dasharray:none";
+      let standardStyle =
+        "fill:#c0c0c0;stroke:#ffffff;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none";
 
       mainSVG.addEventListener("click", function(event) {
         if (previousTarget !== "") {
           previousTarget.style = standardStyle;
           //Special treatment for England
-          if (previousTarget.id === "gb-nir" || previousTarget.id === "gb-gbn") {
+          if (
+            previousTarget.id === "gb-nir" ||
+            previousTarget.id === "gb-gbn"
+          ) {
             England.style = standardStyle;
             N_Ireland.style = standardStyle;
           }
@@ -61,7 +66,7 @@ const EuropeMap = () => {
           output.innerHTML = "---";
           return;
         }
-        if (targetID.length > 2) targetID = targetID.slice(0,2);
+        if (targetID.length > 2) targetID = targetID.slice(0, 2);
         const promise = facade.getCountryNameByAlpha2(targetID);
         promise
           .then(data => {
@@ -69,9 +74,7 @@ const EuropeMap = () => {
           })
           .catch(err => {
             if (err.status) {
-              err.fullError.then(
-                err => (console.log(err))
-              );
+              err.fullError.then(err => console.log(err));
             } else {
               console.log("Network error");
               output.innerHTML = "Network error";
@@ -84,6 +87,7 @@ const EuropeMap = () => {
 
   return (
     <>
+      <p>Semester Project</p>
       <h3>Choose a country</h3>
       <br></br>
       <div name="europeMapDiv" dangerouslySetInnerHTML={createMarkup()}></div>
