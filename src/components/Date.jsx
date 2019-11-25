@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css"; // Required for Date Picker
 import "react-datepicker/dist/react-datepicker-cssmodules.css"; // Required for Date Picker to work.
 
 const myDateFormat = "dd/MM/yyyy";
+const warning = "End Date is set before Start Date.";
 
 /**
  * MAIN
@@ -12,6 +13,7 @@ const myDateFormat = "dd/MM/yyyy";
 const DateSelector = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [warning, setWarning] = useState("");
 
   return (
     <>
@@ -19,16 +21,19 @@ const DateSelector = () => {
       <br />
       end date: {endDate.toString()}
       <br />
+      {warning}
+      <br />
       <MyStartDateSelector
         startDate={startDate}
         setStartDate={setStartDate}
         endDate={endDate}
+        setWarning={setWarning}
       />
-      <br />
-      <myEndDateSelector
+      <MyEndDateSelector
         startDate={startDate}
         setEndDate={setEndDate}
         endDate={endDate}
+        setWarning={setWarning}
       />
       <br></br>
       <BackButton />
@@ -36,17 +41,27 @@ const DateSelector = () => {
   );
 };
 
-const myEndDateSelector = ({ startDate, setEndDate, endDate }) => {
+const MyEndDateSelector = ({ startDate, setEndDate, endDate, setWarning }) => {
   return (
     <>
+      <h3> Pick End Date </h3>
       <DatePicker
         selected={endDate}
-        onChange={date => setEndDate(date)}
+        onChange={date => {
+          setEndDate(date);
+          if (startDate > date) {
+            setWarning(warning);
+            // TODO DISABLE SUBMIT BUTTON HERE IN THE IF STATEMENT.
+          } else {
+            setWarning("");
+          }
+        }}
         inline
         showWeekNumbers
         showMonthDropdown
         showYearDropdown
         selectsEnd
+        dropdownMode="select"
         endDate={endDate}
         minDate={startDate}
         dateFormat={myDateFormat}
@@ -56,12 +71,26 @@ const myEndDateSelector = ({ startDate, setEndDate, endDate }) => {
   );
 };
 
-const MyStartDateSelector = ({ startDate, setStartDate, endDate }) => {
+const MyStartDateSelector = ({
+  startDate,
+  setStartDate,
+  endDate,
+  setWarning
+}) => {
   return (
     <>
+      <h3> Pick Start Date </h3>
       <DatePicker
         selected={startDate}
-        onChange={date => setStartDate(date)}
+        onChange={date => {
+          setStartDate(date);
+          if (endDate < date) {
+            setWarning(warning);
+            // TODO DISABLE SUBMIT BUTTON HERE IN THE IF STATEMENT.
+          } else {
+            setWarning("");
+          }
+        }}
         inline
         showWeekNumbers
         showMonthDropdown
