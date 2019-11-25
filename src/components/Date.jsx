@@ -5,14 +5,12 @@ import "react-datepicker/dist/react-datepicker.css"; // Required for Date Picker
 import "react-datepicker/dist/react-datepicker-cssmodules.css"; // Required for Date Picker to work.
 
 const myDateFormat = "yyyy/MM/dd";
-const warning = "End Date is set before Start Date.";
+const warning = "End date can't be before Start date.";
 
 /**
  * MAIN
  */
-const DateSelector = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+const DateSelector = ({ startDate, setStartDate, endDate, setEndDate }) => {
   const [warning, setWarning] = useState("");
 
   return (

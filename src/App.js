@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Europe from "./components/EuropeMap.jsx";
@@ -9,6 +9,11 @@ import DateSelector from "./components/Date.jsx";
 import Result from "./components/Result.jsx";
 
 function App() {
+  // Date states
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  // Date states end
+
   return (
     <div className="App">
       {
@@ -19,7 +24,14 @@ function App() {
         <Switch>
           <Route path="/city" component={City} />
           {/* Date is a reserved Word - My VS Code was not happy */}
-          <Route path="/date" component={DateSelector} />
+          <Route path="/date">
+            <DateSelector
+              startDate={startDate}
+              setStartDate={setStartDate}
+              endDate={endDate}
+              setEndDate={setEndDate}
+            />
+          </Route>
           <Route path="/result" component={Result} />
           <Route exact path="/" component={Europe} />
           <Route path="*" component={NoMatch} />
