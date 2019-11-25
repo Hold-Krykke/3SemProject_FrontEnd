@@ -5,7 +5,7 @@ import Europe from "./components/EuropeMap.jsx";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import City from "./components/City.jsx";
-import Date_ from "./components/Date.jsx";
+import DateSelector from "./components/Date.jsx";
 import Result from "./components/Result.jsx";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
         <Switch>
           <Route path="/city" component={City} />
           {/* Date is a reserved Word - My VS Code was not happy */}
-          <Route path="/date" component={Date_} />
+          <Route path="/date" component={DateSelector} />
           <Route path="/result" component={Result} />
           <Route exact path="/" component={Europe} />
           <Route path="*" component={NoMatch} />
