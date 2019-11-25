@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker"; // Required for Date Picker to work.
-import { addMonths } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css"; // Required for Date Picker to work.
 import "react-datepicker/dist/react-datepicker-cssmodules.css"; // Required for Date Picker to work.
 
+// Text or Formats used multiple places throughout code.
 const myDateFormat = "yyyy/MM/dd";
-const warning = "End date can't be before Start date.";
+const warningText = "End date can't be before Start date.";
+const todayButtonText = "Click me to set date to today.";
 
 /**
  * MAIN
@@ -33,7 +34,9 @@ const DateSelector = ({ startDate, setStartDate, endDate, setEndDate }) => {
         endDate={endDate}
         setWarning={setWarning}
       />
-      <br></br>
+      <br />
+      <NextButton warning={warning} />
+      <br />
       <BackButton />
     </>
   );
@@ -48,7 +51,7 @@ const MyEndDateSelector = ({ startDate, setEndDate, endDate, setWarning }) => {
         onChange={date => {
           setEndDate(date);
           if (startDate > date) {
-            setWarning(warning);
+            setWarning(warningText);
             // TODO DISABLE SUBMIT BUTTON HERE IN THE IF STATEMENT.
           } else {
             setWarning("");
@@ -63,7 +66,7 @@ const MyEndDateSelector = ({ startDate, setEndDate, endDate, setWarning }) => {
         endDate={endDate}
         minDate={startDate}
         dateFormat={myDateFormat}
-        todayButton="Click me to set date to today."
+        todayButton={todayButtonText}
       />
     </>
   );
@@ -83,7 +86,7 @@ const MyStartDateSelector = ({
         onChange={date => {
           setStartDate(date);
           if (endDate < date) {
-            setWarning(warning);
+            setWarning(warningText);
             // TODO DISABLE SUBMIT BUTTON HERE IN THE IF STATEMENT.
           } else {
             setWarning("");
@@ -99,7 +102,7 @@ const MyStartDateSelector = ({
         startDate={startDate}
         endDate={endDate}
         dateFormat={myDateFormat}
-        todayButton="Click me to set date to today."
+        todayButton={todayButtonText}
       />
     </>
   );
@@ -107,6 +110,17 @@ const MyStartDateSelector = ({
 
 const BackButton = () => {
   return <a href="#/city">Back Button</a>;
+};
+
+/**
+ * If End date is set to before Start date, then don't render the "Next" Button.
+ */
+const NextButton = ({ warning }) => {
+  if (warning === "") {
+    return <a href="#/result">See Events</a>;
+  } else {
+    return <>{warningText}</>;
+  }
 };
 
 export default DateSelector;

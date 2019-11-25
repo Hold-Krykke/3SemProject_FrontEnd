@@ -32,7 +32,9 @@ function App() {
               setEndDate={setEndDate}
             />
           </Route>
-          <Route path="/result" component={Result} />
+          <Route path="/result">
+            <Result endDate={endDate} startDate={startDate} />
+          </Route>
           <Route exact path="/" component={Europe} />
           <Route path="*" component={NoMatch} />
         </Switch>
