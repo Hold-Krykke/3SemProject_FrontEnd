@@ -4,7 +4,7 @@ import { addMonths } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css"; // Required for Date Picker to work.
 import "react-datepicker/dist/react-datepicker-cssmodules.css"; // Required for Date Picker to work.
 
-const myDateFormat = "dd/MM/yyyy";
+const myDateFormat = "yyyy/MM/dd";
 const warning = "End Date is set before Start Date.";
 
 /**
