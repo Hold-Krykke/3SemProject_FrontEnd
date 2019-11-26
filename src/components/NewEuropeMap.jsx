@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../App.css";
-import SVGMap from "../svg_files/Europe.js";
+import SVGMap from "../svg_files/NewEurope.js";
 import facade from "../apiFacade.js";
 
 /**
@@ -30,8 +30,6 @@ const EuropeMap = () => {
             let output = document.getElementById("outputCountry");
             let mainSVG = document.getElementById("svg2");
             let previousTarget = "";
-            let England = mainSVG.querySelector("#gb-gbn");
-            let N_Ireland = mainSVG.querySelector("#gb-nir");
 
             let highlightStyle =
                 "fill:#29B6F6;stroke:#ffffff;stroke-width:0.11153841;stroke-miterlimit:4;stroke-dasharray:none";
@@ -41,23 +39,9 @@ const EuropeMap = () => {
             mainSVG.addEventListener("click", function (event) {
                 if (previousTarget !== "") {
                     previousTarget.style = standardStyle;
-                    //Special treatment for England
-                    if (
-                        previousTarget.id === "gb-nir" ||
-                        previousTarget.id === "gb-gbn"
-                    ) {
-                        England.style = standardStyle;
-                        N_Ireland.style = standardStyle;
-                    }
                 }
                 previousTarget = event.target;
                 event.target.style = highlightStyle;
-
-                //Special treatment for England
-                if (event.target.id === "gb-nir" || event.target.id === "gb-gbn") {
-                    England.style = highlightStyle;
-                    N_Ireland.style = highlightStyle;
-                }
 
                 let targetID = event.target.id;
 
