@@ -7,15 +7,16 @@ function SVGData() {
  <svg 
  id="svg2"
  baseprofile="tiny" 
- fill="#c0c0c0" 
-  
+
+ fill="#c0c0c0"  
  stroke="black" 
  stroke-linecap="round" 
  stroke-linejoin="round" 
- stroke-width="0.40000001" 
- version="1.2" 
+ stroke-width="0.40000001"  
  stroke-miterlimit="4"
  stroke-dasharray="none"
+
+ version="1.2"
  
  viewbox="0 0 1000 684" 
 
