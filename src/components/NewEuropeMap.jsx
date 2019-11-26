@@ -34,14 +34,16 @@ const EuropeMap = () => {
             let highlightStyle =
                 "fill:#29B6F6;stroke:#ffffff;stroke-width:0.11153841;stroke-miterlimit:4;stroke-dasharray:none";
             let standardStyle =
-                "fill:#c0c0c0;stroke:#ffffff;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none";
+                "fill:#c0c0c0;stroke:#black;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none";
 
             mainSVG.addEventListener("click", function (event) {
                 if (previousTarget !== "") {
                     previousTarget.style = standardStyle;
                 }
                 previousTarget = event.target;
-                event.target.style = highlightStyle;
+                if (event.target.id !== 'svg2') {
+                    event.target.style = highlightStyle;
+                }
 
                 let targetID = event.target.id;
 

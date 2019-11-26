@@ -1,17 +1,21 @@
 function SVGData() {
     return (`
 
+
+
  <?xml version="1.0"?>
  <svg 
  id="svg2"
  baseprofile="tiny" 
- fill="#ececec" 
+ fill="#c0c0c0" 
   
  stroke="black" 
  stroke-linecap="round" 
  stroke-linejoin="round" 
- stroke-width=".1" 
+ stroke-width="0.40000001" 
  version="1.2" 
+ stroke-miterlimit="4"
+ stroke-dasharray="none"
  
  viewbox="0 0 1000 684" 
 
