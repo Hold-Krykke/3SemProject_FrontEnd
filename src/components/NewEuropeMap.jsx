@@ -46,7 +46,7 @@ const EuropeMap = () => {
                 }
 
                 let targetID = event.target.id;
-
+                zoomAndPan(mainSVG, targetID);
                 //Part that fetches country name and displays it
                 if (targetID === "svg2") {
                     output.innerHTML = "---";
@@ -81,5 +81,14 @@ const EuropeMap = () => {
         </>
     );
 };
+
+function zoomAndPan(mainSVG, pathElementID) {
+    let viewBoxInitValue = mainSVG.getAttribute('viewBox');
+    console.log('viewBoxInitValue ', viewBoxInitValue);
+    let bboxPath = document.getElementById(pathElementID).getBoundingClientRect();
+    let bboxSvg = document.getElementById('svg2').getBoundingClientRect();
+    console.log('bboxPath ', bboxPath);
+    console.log('bboxSVG ', bboxSvg);
+}
 
 export default EuropeMap;
