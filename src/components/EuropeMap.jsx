@@ -10,7 +10,7 @@ import facade from "../apiFacade.js";
  * the div where we want to show the SVG.
  */
 function createMarkup() {
-  return { __html: SVGMap() };
+    return { __html: SVGMap() };
 }
 
 /**
@@ -25,75 +25,70 @@ function createMarkup() {
  * that lets the user visually "choose" a country.
  */
 const EuropeMap = () => {
-  useEffect(() => {
-    function setupCountryChooser() {
-      let output = document.getElementById("outputCountry");
-      let mainSVG = document.getElementById("svg2");
-      let previousTarget = "";
-      let England = mainSVG.querySelector("#gb-gbn");
-      let N_Ireland = mainSVG.querySelector("#gb-nir");
+    useEffect(() => {
+        function setupCountryChooser() {
+            let output = document.getElementById("outputCountry");
+            let mainSVG = document.getElementById("svg2");
+            let previousTarget = "";
 
-      let highlightStyle =
-        "fill:#29B6F6;stroke:#ffffff;stroke-width:0.11153841;stroke-miterlimit:4;stroke-dasharray:none";
-      let standardStyle =
-        "fill:#c0c0c0;stroke:#ffffff;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none";
+            let highlightStyle =
+                "fill:#29B6F6;stroke:#black;stroke-width:0.11153841;stroke-miterlimit:4;stroke-dasharray:none";
+            let standardStyle =
+                "fill:#c0c0c0;stroke:#black;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none";
 
-      mainSVG.addEventListener("click", function(event) {
-        if (previousTarget !== "") {
-          previousTarget.style = standardStyle;
-          //Special treatment for England
-          if (
-            previousTarget.id === "gb-nir" ||
-            previousTarget.id === "gb-gbn"
-          ) {
-            England.style = standardStyle;
-            N_Ireland.style = standardStyle;
-          }
+            mainSVG.addEventListener("click", function (event) {
+                if (previousTarget !== "") {
+                    previousTarget.style = standardStyle;
+                }
+                previousTarget = event.target;
+                if (event.target.id !== 'svg2') {
+                    event.target.style = highlightStyle;
+                }
+
+                let targetID = event.target.id;
+                zoomAndPan(mainSVG, targetID);
+                //Part that fetches country name and displays it
+                if (targetID === "svg2") {
+                    output.innerHTML = "---";
+                    return;
+                }
+                if (targetID.length > 2) targetID = targetID.slice(0, 2);
+                const promise = facade.getCountryNameByAlpha2(targetID);
+                promise
+                    .then(data => {
+                        output.innerHTML = data.Countryname;
+                    })
+                    .catch(err => {
+                        if (err.status) {
+                            err.fullError.then(err => console.log(err));
+                        } else {
+                            console.log("Network error");
+                            output.innerHTML = "Network error";
+                        }
+                    });
+            });
         }
-        previousTarget = event.target;
-        event.target.style = highlightStyle;
+        setupCountryChooser();
+    }, []);
 
-        //Special treatment for England
-        if (event.target.id === "gb-nir" || event.target.id === "gb-gbn") {
-          England.style = highlightStyle;
-          N_Ireland.style = highlightStyle;
-        }
-
-        let targetID = event.target.id;
-
-        //Part that fetches country name and displays it
-        if (targetID === "svg2") {
-          output.innerHTML = "---";
-          return;
-        }
-        if (targetID.length > 2) targetID = targetID.slice(0, 2);
-        const promise = facade.getCountryNameByAlpha2(targetID);
-        promise
-          .then(data => {
-            output.innerHTML = data.Countryname;
-          })
-          .catch(err => {
-            if (err.status) {
-              err.fullError.then(err => console.log(err));
-            } else {
-              console.log("Network error");
-              output.innerHTML = "Network error";
-            }
-          });
-      });
-    }
-    setupCountryChooser();
-  }, []);
-
-  return (
-    <>
-      <p>Semester Project</p>
-      <h3>Choose a country</h3>
-      <br></br>
-      <div name="europeMapDiv" dangerouslySetInnerHTML={createMarkup()}></div>
-      <div id="outputCountry"></div>
-    </>
-  );
+    return (
+        <>
+            <p>Semester Project</p>
+            <h3>Choose a country</h3>
+            <br></br>
+            <div name="europeMapDiv" dangerouslySetInnerHTML={createMarkup()}></div>
+            <div id="outputCountry"></div>
+        </>
+    );
 };
+
+function zoomAndPan(mainSVG, pathElementID) {
+    let viewBoxInitValue = mainSVG.getAttribute('viewBox');
+    console.log('viewBoxInitValue ', viewBoxInitValue);
+    let bboxPath = document.getElementById(pathElementID).getBoundingClientRect();
+    let bboxSvg = document.getElementById('svg2').getBoundingClientRect();
+    console.log('bboxPath ', bboxPath);
+    console.log('bboxSVG ', bboxSvg);
+}
 
 export default EuropeMap;

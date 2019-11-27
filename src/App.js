@@ -55,7 +55,7 @@ function App() {
  * Move this to components, if it becomes more complex than this.
  */
 const NoMatch = () => {
-  return <h1>There is nothing here.</h1>;
+    return <h1>There is nothing here.</h1>;
 };
 
 export default App;
