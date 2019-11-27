@@ -82,6 +82,9 @@ const EuropeMap = () => {
     );
 };
 
+// for work with zoom/pan in next pull-request
+// this is just initial trying to understand how to manipulate viewbox
+// and how to use bbox and viewport
 function zoomAndPan(mainSVG, pathElementID) {
     let viewBoxInitValue = mainSVG.getAttribute('viewBox');
     console.log('viewBoxInitValue ', viewBoxInitValue);
