@@ -30,37 +30,23 @@ const EuropeMap = () => {
             let output = document.getElementById("outputCountry");
             let mainSVG = document.getElementById("svg2");
             let previousTarget = "";
-            let England = mainSVG.querySelector("#gb-gbn");
-            let N_Ireland = mainSVG.querySelector("#gb-nir");
 
             let highlightStyle =
-                "fill:#29B6F6;stroke:#ffffff;stroke-width:0.11153841;stroke-miterlimit:4;stroke-dasharray:none";
+                "fill:#29B6F6;stroke:#black;stroke-width:0.11153841;stroke-miterlimit:4;stroke-dasharray:none";
             let standardStyle =
-                "fill:#c0c0c0;stroke:#ffffff;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none";
+                "fill:#c0c0c0;stroke:#black;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none";
 
             mainSVG.addEventListener("click", function (event) {
                 if (previousTarget !== "") {
                     previousTarget.style = standardStyle;
-                    //Special treatment for England
-                    if (
-                        previousTarget.id === "gb-nir" ||
-                        previousTarget.id === "gb-gbn"
-                    ) {
-                        England.style = standardStyle;
-                        N_Ireland.style = standardStyle;
-                    }
                 }
                 previousTarget = event.target;
-                event.target.style = highlightStyle;
-
-                //Special treatment for England
-                if (event.target.id === "gb-nir" || event.target.id === "gb-gbn") {
-                    England.style = highlightStyle;
-                    N_Ireland.style = highlightStyle;
+                if (event.target.id !== 'svg2') {
+                    event.target.style = highlightStyle;
                 }
 
                 let targetID = event.target.id;
-
+                zoomAndPan(mainSVG, targetID);
                 //Part that fetches country name and displays it
                 if (targetID === "svg2") {
                     output.innerHTML = "---";
@@ -95,5 +81,14 @@ const EuropeMap = () => {
         </>
     );
 };
+
+function zoomAndPan(mainSVG, pathElementID) {
+    let viewBoxInitValue = mainSVG.getAttribute('viewBox');
+    console.log('viewBoxInitValue ', viewBoxInitValue);
+    let bboxPath = document.getElementById(pathElementID).getBoundingClientRect();
+    let bboxSvg = document.getElementById('svg2').getBoundingClientRect();
+    console.log('bboxPath ', bboxPath);
+    console.log('bboxSVG ', bboxSvg);
+}
 
 export default EuropeMap;

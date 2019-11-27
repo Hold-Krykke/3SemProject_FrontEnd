@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Europe from "./components/NewEuropeMap.jsx";
+import Europe from "./components/EuropeMap.jsx";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import City from "./components/City.jsx";
