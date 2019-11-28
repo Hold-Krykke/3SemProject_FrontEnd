@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Tab, Tabs, Modal, Button, Card, Badge} from 'react-bootstrap';
 import Facade from '../apiFacade';
+import parseDate from '../utilities';
 
 const Result = ({startDate, endDate, country, city}) => {
 	const [data, setData] = useState();
@@ -39,12 +40,8 @@ const Result = ({startDate, endDate, country, city}) => {
 					</Modal.Header>
 				)} */}
 				<Modal.Body>
-					<p>
-						Start Date = <ParseDate date={startDate} />
-					</p>
-					<p>
-						End Date = <ParseDate date={endDate} />
-					</p>
+					<p>Start Date = {parseDate(startDate)}</p>
+					<p>End Date = {parseDate(endDate)}</p>
 					<p>Country = {country}</p>
 					<p>City = {city}</p>
 					{/* {data && <ControlledTabs eventData={data} />} */
@@ -86,12 +83,6 @@ const ControlledTabs = ({eventData}) => {
 	);
 };
 
-const ParseDate = ({date}) => {
-	let month = date.getMonth();
-	month = month + 1;
-	return '' + date.getFullYear() + '-' + month + '-' + date.getDate();
-};
-
 const Events = ({data}) => {
 	if (!data) {
 		return <p>No events for this selection.</p>;
@@ -118,10 +109,7 @@ const Events = ({data}) => {
 											<li>Event Date: {eventDate}</li>
 											<li>
 												Event tickets:{' '}
-												<a
-													href={eventURL}
-													target="_blank"
-													rel="noopener noreferrer">
+												<a href={eventURL} target="_blank" rel="noopener noreferrer">
 													Purchase tickets
 												</a>
 											</li>
@@ -149,10 +137,7 @@ const Weather = ({data}) => {
 					<Card.Body>
 						<Card.Title>Weather Info</Card.Title>
 						<Card.Text>
-							<p>
-								Weather info (Should be returned from API once available):{' '}
-								{data}
-							</p>
+							<p>Weather info (Should be returned from API once available): {data}</p>
 						</Card.Text>
 					</Card.Body>
 				</Card>
@@ -171,10 +156,7 @@ const Clothing = ({data}) => {
 					<Card.Body>
 						<Card.Title>Clothes info</Card.Title>
 						<Card.Text>
-							<p>
-								Clothes info (Should be returned from API once available):{' '}
-								{data}
-							</p>
+							<p>Clothes info (Should be returned from API once available): {data}</p>
 						</Card.Text>
 					</Card.Body>
 				</Card>
