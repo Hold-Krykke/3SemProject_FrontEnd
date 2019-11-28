@@ -76,9 +76,6 @@ const ControlledTabs = ({eventData}) => {
 			<Tab eventKey="weather" title="Weather">
 				<Weather data={null} /> {/*add actual data from API here*/}
 			</Tab>
-			<Tab eventKey="clothes" title="Clothes">
-				<Clothing data={null} /> {/*add actual data from API here*/}
-			</Tab>
 		</Tabs>
 	);
 };
@@ -109,7 +106,10 @@ const Events = ({data}) => {
 											<li>Event Date: {eventDate}</li>
 											<li>
 												Event tickets:{' '}
-												<a href={eventURL} target="_blank" rel="noopener noreferrer">
+												<a
+													href={eventURL}
+													target="_blank"
+													rel="noopener noreferrer">
 													Purchase tickets
 												</a>
 											</li>
@@ -137,26 +137,10 @@ const Weather = ({data}) => {
 					<Card.Body>
 						<Card.Title>Weather Info</Card.Title>
 						<Card.Text>
-							<p>Weather info (Should be returned from API once available): {data}</p>
-						</Card.Text>
-					</Card.Body>
-				</Card>
-			</>
-		);
-	}
-};
-
-const Clothing = ({data}) => {
-	if (!data) {
-		return <p>No clothing suggestions for this selection.</p>;
-	} else if (data.length > 0) {
-		return (
-			<>
-				<Card border="light">
-					<Card.Body>
-						<Card.Title>Clothes info</Card.Title>
-						<Card.Text>
-							<p>Clothes info (Should be returned from API once available): {data}</p>
+							<p>
+								Weather info (Should be returned from API once available):{' '}
+								{data}
+							</p>
 						</Card.Text>
 					</Card.Body>
 				</Card>
