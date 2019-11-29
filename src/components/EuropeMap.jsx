@@ -30,6 +30,7 @@ const EuropeMap = () => {
             let output = document.getElementById("outputCountry");
             let mainSVG = document.getElementById("svg2");
             let previousTarget = "";
+            const viewBoxInitValue = mainSVG.getAttribute('viewBox');
 
             let highlightStyle =
                 "fill:#29B6F6;stroke:#black;stroke-width:0.11153841;stroke-miterlimit:4;stroke-dasharray:none";
@@ -47,7 +48,7 @@ const EuropeMap = () => {
 
                 let targetID = event.target.id;
 
-                zoomAndPan(mainSVG, targetID);
+                zoomAndPan(mainSVG, targetID, viewBoxInitValue);
                 //Part that fetches country name and displays it
                 if (targetID === "svg2") {
                     output.innerHTML = "---";
@@ -70,6 +71,7 @@ const EuropeMap = () => {
             });
         }
         setupCountryChooser();
+
     }, []);
 
     return (
@@ -77,17 +79,27 @@ const EuropeMap = () => {
             <p>Semester Project</p>
             <h3>Choose a country</h3>
             <br></br>
-            <div name="europeMapDiv" dangerouslySetInnerHTML={createMarkup()}></div>
+            <div style={{ position: "relative", display: "inline-block" }}>
+                <div name="europeMapDiv" style={{ display: "inline-block" }} dangerouslySetInnerHTML={createMarkup()}>
+                </div>
+
+                <button style={{ position: "absolute", top: "425px", left: "600px" }} onClick={testClickListener} value="city">city</button>
+
+
+            </div>
             <div id="outputCountry"></div>
         </>
     );
 };
 
+function testClickListener(event) {
+    alert(event.target.value);
+}
+
 // for work with zoom/pan in next pull-request
 // this is just initial trying to understand how to manipulate viewbox
 // and how to use bbox and viewport
-function zoomAndPan(mainSVG, pathElementID) {
-    let viewBoxInitValue = mainSVG.getAttribute('viewBox');
+function zoomAndPan(mainSVG, pathElementID, viewBoxInitValue) {
     console.log('viewBoxInitValue ', viewBoxInitValue);
     let bboxPath = document.getElementById(pathElementID).getBoundingClientRect();
     let bboxSvg = document.getElementById('svg2').getBoundingClientRect();
@@ -107,7 +119,19 @@ function zoomAndPan(mainSVG, pathElementID) {
     let xCenter = xCenterCountry - (widthCountry / 2);
     let yCenter = yCenterCountry - (heightCountry / 2);
 
-    mainSVG.setAttribute("viewBox", xCenter + " " + yCenter + " " + widthCountry + " " + heightCountry);
+    let zoomedIn = viewBoxInitValue !== mainSVG.getAttribute('viewBox');
+
+    if (zoomedIn) {
+        mainSVG.setAttribute("viewBox", viewBoxInitValue);
+        console.log('VIEWBOX SET TO INIT', mainSVG.getAttribute('viewBox'));
+        console.log('ZOOMEDIN IF', zoomedIn);
+    } else {
+        mainSVG.setAttribute("viewBox", xCenter + " " + yCenter + " " + widthCountry + " " + heightCountry);
+        console.log('VIEWBOX SET TO ZOOM', mainSVG.getAttribute('viewBox'));
+        console.log('ZOOMEDIN ELSE', zoomedIn);
+    }
+
+
 }
 
 export default EuropeMap;
