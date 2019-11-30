@@ -23,7 +23,8 @@ const EuropeMap = () => {
     };
 
     useEffect(() => {
-        let showCities = countriesWithCities.filter(country => { return country.countryName === countryChosen }).map(matchingCountry => matchingCountry.cities);
+        let showCities = countriesWithCities.filter(
+            country => { return country.countryName === countryChosen }).map(matchingCountry => matchingCountry.cities);
         setChosenCountryWithCities(...showCities);
     }, [countryChosen]);
 
@@ -50,6 +51,8 @@ const EuropeMap = () => {
         </>
     );
 };
+
+export default EuropeMap;
 
 function hardcodedCountryList() {
     const hardcodedCountriesWithCities =
@@ -87,4 +90,3 @@ function hardcodedCountryList() {
     return hardcodedCountriesWithCities;
 }
 
-export default EuropeMap;
