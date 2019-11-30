@@ -1,9 +1,9 @@
-import {onlineURL} from './settings.js';
+import {eventURL, weatherURL} from './settings.js';
 import parseDate from './utilities';
 
 function apiFacade() {
 	const getCountryNameByAlpha2 = alpha2 => {
-		return fetch(onlineURL + 'countryname/' + alpha2).then(handleHttpErrors);
+		return fetch(eventURL + 'countryname/' + alpha2).then(handleHttpErrors);
 	};
 
 	// Example URL from test
@@ -21,7 +21,12 @@ function apiFacade() {
 
 		const payload = `events?startdate=${start}&enddate=${end}&country=${country}&city=${city}`;
 
-		return fetch(onlineURL + payload).then(handleHttpErrors);
+		return fetch(eventURL + payload).then(handleHttpErrors);
+	};
+
+	const getWeather = (city, year, month, day) => {
+		const payload = `city/${city}/${year}/${month}/${day}`;
+		return fetch(weatherURL + payload).then(handleHttpErrors);
 	};
 
 	function handleHttpErrors(res) {
@@ -50,7 +55,8 @@ function apiFacade() {
 		// getSomething: getSomething
 		// newmethodname: actualMethod
 		getCountryNameByAlpha2,
-		getEvents
+		getEvents,
+		getWeather
 	};
 }
 
