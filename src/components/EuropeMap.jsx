@@ -57,7 +57,8 @@ const EuropeMap = () => {
 export default EuropeMap;
 
 
-// Citydata goes here
+// Citydata goes here - data for Denmark and Germany 
+// is just testdata and not correctly placed yet
 function hardcodedCountryList() {
     const hardcodedCountriesWithCities =
         [
