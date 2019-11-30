@@ -23,6 +23,9 @@ const EuropeMap = () => {
     };
 
     useEffect(() => {
+        if (cityChosen !== '') {
+            setCityChosen('');
+        }
         let showCities = countriesWithCities.filter(
             country => { return country.countryName === countryChosen }).map(matchingCountry => matchingCountry.cities);
         setChosenCountryWithCities(...showCities);
@@ -36,7 +39,6 @@ const EuropeMap = () => {
             <div id="mapcontainer" style={{ position: "relative", display: "inline-block" }}>
                 <MapViewer
                     onCountryChange={handleCountryChange}
-                    onCityChange={handleCityChange}
                     countryChosen={countryChosen} />
 
                 {chosenCountryWithCities && chosenCountryWithCities.map((city, index) => (

@@ -33,7 +33,7 @@ function zoomAndPan(mainSVG, pathElement, viewBoxInitValue) {
 
 
 const MapViewer = props => {
-    const { onCountryChange, onCityChange, countryChosen } = props;
+    const { onCountryChange, countryChosen } = props;
     const viewBoxInitValue = "0 0 1000 684";
     const [previousTargetID, setPreviousTargetID] = useState('');
     let highlightStyle =
