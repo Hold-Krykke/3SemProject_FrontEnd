@@ -25,7 +25,6 @@ function App() {
       <Router>
         <Switch>
           <Route path="/city" component={City} />
-          {/* Date is a reserved Word - My VS Code was not happy */}
           <Route path="/date">
             <DateSelector
               startDate={startDate}
