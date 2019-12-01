@@ -62,7 +62,8 @@ export default EuropeMap;
 
 
 /**	
- * Hardcoded data for city button placement for all countries. 	
+ * Hardcoded data (absolute pixelplacement) for city button placement 
+ * for all countries in relation to the SVG (relative). 	
  */
 function hardcodedCountryList() {
     const hardcodedCountriesWithCities =
