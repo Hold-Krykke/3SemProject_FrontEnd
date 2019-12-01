@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import MapViewer from "./MapViewer";
 
+
+/**	
+ * Parent component, controls state for city and country * 	
+ */
 const EuropeMap = () => {
 
     const initialState = [{
@@ -57,8 +61,9 @@ const EuropeMap = () => {
 export default EuropeMap;
 
 
-// Citydata goes here - data for Denmark and Germany 
-// is just testdata and not correctly placed yet
+/**	
+ * Hardcoded data for city button placement for all countries. 	
+ */
 function hardcodedCountryList() {
     const hardcodedCountriesWithCities =
         [

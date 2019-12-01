@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "../App.css";
 
-
+/**	
+ * Zoom and pan function, used by the MapViewer component 	
+ */
 function zoomAndPan(mainSVG, pathElement, viewBoxInitValue) {
     let bboxPath = pathElement.getBoundingClientRect();
     let bboxSvg = mainSVG.getBoundingClientRect();
@@ -31,7 +33,9 @@ function zoomAndPan(mainSVG, pathElement, viewBoxInitValue) {
     return zoomedIn;
 }
 
-
+/**	
+ * Child component, contains SVG and controls zoom/pan 	
+ */
 const MapViewer = props => {
     const { onCountryChange, countryChosen } = props;
     const viewBoxInitValue = "0 0 1000 684";
