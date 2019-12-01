@@ -65,31 +65,174 @@ function hardcodedCountryList() {
             {
                 "countryName": "Denmark",
                 "countryCode": "dk",
-                "cities": [{
-                    "cityName": "Copenhagen",
-                    "x": "545.6",
-                    "y": "328.1"
-                },
-                {
-                    "cityName": "Aarhus",
-                    "x": "519.8",
-                    "y": "320.3"
-                }
-                ]
+                "cities":
+                    [
+                        {
+                            "cityName": "Copenhagen",
+                            "x": "575",
+                            "y": "400"
+                        },
+                        {
+                            "cityName": "Aarhus",
+                            "x": "265",
+                            "y": "320"
+                        },
+                        {
+                            "cityName": "Odense",
+                            "x": "295",
+                            "y": "453"
+                        },
+                        {
+                            "cityName": "Aalborg",
+                            "x": "205",
+                            "y": "170"
+                        }
+                    ]
             },
             {
                 "countryName": "Germany",
                 "countryCode": "de",
-                "cities": [{
-                    "cityName": "Berlin",
-                    "x": "219.8",
-                    "y": "520.3"
-                },
-                {
-                    "cityName": "Hamburg",
-                    "x": "519.8",
-                    "y": "320.3"
-                }]
+                "cities":
+                    [
+                        {
+                            "cityName": "Berlin",
+                            "x": "665",
+                            "y": "205"
+                        },
+                        {
+                            "cityName": "Hamburg",
+                            "x": "400",
+                            "y": "85"
+                        },
+                        {
+                            "cityName": "Munich",
+                            "x": "580",
+                            "y": "570"
+                        },
+                        {
+                            "cityName": "Köln",
+                            "x": "250",
+                            "y": "335"
+                        },
+                        {
+                            "cityName": "Frankfurt am Main",
+                            "x": "310",
+                            "y": "450"
+                        }
+                    ]
+            },
+            {
+                "countryName": "Sweden",
+                "countryCode": "se",
+                "cities":
+                    [
+                        {
+                            "cityName": "Stockholm",
+                            "x": "495",
+                            "y": "470"
+                        },
+                        {
+                            "cityName": "Göteborg",
+                            "x": "270",
+                            "y": "540"
+                        },
+                        {
+                            "cityName": "Malmö",
+                            "x": "330",
+                            "y": "650"
+                        },
+                        {
+                            "cityName": "Uppsala",
+                            "x": "448",
+                            "y": "415"
+                        },
+                        {
+                            "cityName": "Västerås",
+                            "x": "390",
+                            "y": "455"
+                        }
+                    ]
+            },
+            {
+                "countryName": "Norway",
+                "countryCode": "no",
+                "cities":
+                    [
+                        {
+                            "cityName": "Oslo",
+                            "x": "490",
+                            "y": "600"
+                        },
+                        {
+                            "cityName": "Bergen",
+                            "x": "345",
+                            "y": "585"
+                        },
+                        {
+                            "cityName": "Trondheim",
+                            "x": "450",
+                            "y": "495"
+                        },
+                        {
+                            "cityName": "Stavanger",
+                            "x": "340",
+                            "y": "630"
+                        }
+                    ]
+            },
+            {
+                "countryName": "Finland",
+                "countryCode": "fi",
+                "cities":
+                    [
+                        {
+                            "cityName": "Helsinki",
+                            "x": "455",
+                            "y": "640"
+                        },
+                        {
+                            "cityName": "Tampere",
+                            "x": "380",
+                            "y": "530"
+                        },
+                        {
+                            "cityName": "Turku",
+                            "x": "330",
+                            "y": "610"
+                        },
+                        {
+                            "cityName": "Oulu",
+                            "x": "440",
+                            "y": "305"
+                        },
+                        {
+                            "cityName": "Lahti",
+                            "x": "495",
+                            "y": "565"
+                        }
+                    ]
+            },
+            {
+                "countryName": "Iceland",
+                "countryCode": "is",
+                "cities":
+                    [
+                        {
+                            "cityName": "Reykjavík",
+                            "x": "180",
+                            "y": "420"
+                        },
+                        {
+                            "cityName": "Akureyri",
+                            "x": "550",
+                            "y": "240"
+                        },
+                        {
+                            "cityName": "Selfoss",
+                            "x": "270",
+                            "y": "455"
+                        }
+                    ]
             }
         ];
     return hardcodedCountriesWithCities;
