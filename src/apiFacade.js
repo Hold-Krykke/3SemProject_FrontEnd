@@ -2,9 +2,6 @@ import {eventURL, weatherURL} from './settings.js';
 import parseDate from './utilities';
 
 function apiFacade() {
-	const getCountryNameByAlpha2 = alpha2 => {
-		return fetch(eventURL + 'countryname/' + alpha2).then(handleHttpErrors);
-	};
 
 	// Example URL from test
 	// ?startdate=2019-12-24&enddate=2020-12-24&country=Norway&city=Oslo
@@ -54,7 +51,6 @@ function apiFacade() {
 		// Remember all statements below are a shortcut for this version:
 		// getSomething: getSomething
 		// newmethodname: actualMethod
-		getCountryNameByAlpha2,
 		getEvents,
 		getWeather
 	};
