@@ -36,10 +36,7 @@ const EuropeMap = () => {
     }, [countryChosen]);
 
     return (
-        <>
-            <p>Semester Project</p>
-            <h3>Choose a country</h3>
-            <br></br>
+        <div>
             <div id="mapcontainer" style={{ position: "relative", display: "inline-block" }}>
                 <MapViewer
                     onCountryChange={handleCountryChange}
@@ -54,7 +51,7 @@ const EuropeMap = () => {
                 <p>{countryChosen}</p>
                 <p>{cityChosen}</p>
             </div>
-        </>
+        </div>
     );
 };
 
