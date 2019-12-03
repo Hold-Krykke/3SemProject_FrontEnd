@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import MapViewer from "./MapViewer";
+import styles from './EuropeMapStyles.css'
 
 
 /**	
@@ -36,7 +37,7 @@ const EuropeMap = () => {
     }, [countryChosen]);
 
     return (
-        <div>
+        <div className="europeMapContainer">
             <div id="mapcontainer" style={{ position: "relative", display: "inline-block" }}>
                 <MapViewer
                     onCountryChange={handleCountryChange}
