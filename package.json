@@ -14,7 +14,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "myDeploy": "react-scripts build && surge --project ./build --domain semholdkrykke.surge.sh",
+    "myDeploy": "react-scripts build && surge --project ./build --domain https://semholdkrykke.surge.sh",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
