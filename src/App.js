@@ -14,8 +14,8 @@ function App() {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     // Date states end
-    const [city, setCity] = useState("Oslo"); // OSLO IS TEST DATA. REPLACE
-    const [country, setCountry] = useState("Norway"); // NORWAY IS TEST DATA. REPLACE
+    const [city, setCity] = useState(""); // OSLO IS TEST DATA. REPLACE
+    const [country, setCountry] = useState(""); // NORWAY IS TEST DATA. REPLACE
 
     return (
         <div className="App">
@@ -43,7 +43,14 @@ function App() {
                         />
                     </Route>
                     <Route path="/about" component={About} />
-                    <Route exact path="/" component={Europe} />
+                    <Route exact path="/">
+                        <Europe
+                            countryProp={country}
+                            cityProp={city}
+                            setCountryProp={setCountry}
+                            setCityProp={setCity}
+                        />
+                    </Route>
                     <Route path="*" component={NoMatch} />
                 </Switch>
             </Router>

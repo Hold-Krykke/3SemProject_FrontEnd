@@ -5,8 +5,9 @@ import MapViewer from "./MapViewer";
 
 /**	
  * Parent component, controls state for city and country 
+ * The names can be confusing so all props have "Prop" added to their names
  */
-const EuropeMap = () => {
+const EuropeMap = ({ countryProp, setCountryProp, cityProp, setCityProp }) => {
 
     const initialState = [{
         cityName: '',
@@ -15,25 +16,23 @@ const EuropeMap = () => {
     }];
     const countriesWithCities = hardcodedCountryList();
     const [chosenCountryWithCities, setChosenCountryWithCities] = useState(initialState);
-    const [countryChosen, setCountryChosen] = useState('');
-    const [cityChosen, setCityChosen] = useState('');
 
     function handleCountryChange(country) {
-        setCountryChosen(country);
+        setCountryProp(country);
     };
 
     function handleCityChange(city) {
-        setCityChosen(city);
+        setCityProp(city);
     };
 
     useEffect(() => {
-        if (cityChosen !== '') {
-            setCityChosen('');
+        if (cityProp !== '') {
+            setCityProp('');
         }
         let showCities = countriesWithCities.filter(
-            country => { return country.countryName === countryChosen }).map(matchingCountry => matchingCountry.cities);
+            country => { return country.countryName === countryProp }).map(matchingCountry => matchingCountry.cities);
         setChosenCountryWithCities(...showCities);
-    }, [countryChosen]);
+    }, [countryProp]);
 
     return (
         <>
@@ -43,7 +42,7 @@ const EuropeMap = () => {
             <div id="mapcontainer" style={{ position: "relative", display: "inline-block" }}>
                 <MapViewer
                     onCountryChange={handleCountryChange}
-                    countryChosen={countryChosen} />
+                    countryChosen={countryProp} />
 
                 {chosenCountryWithCities && chosenCountryWithCities.map((city, index) => (
                     <button style={{ position: 'absolute', top: city.y + 'px', left: city.x + 'px' }}
@@ -51,8 +50,8 @@ const EuropeMap = () => {
                 ))}
             </div>
             <div id="outputCountry">
-                <p>{countryChosen}</p>
-                <p>{cityChosen}</p>
+                <p>{countryProp}</p>
+                <p>{cityProp}</p>
             </div>
         </>
     );
