@@ -5,7 +5,7 @@ import styles from './EuropeMapStyles.css'
 
 
 /**	
- * Parent component, controls state for city and country * 	
+ * Parent component, controls state for city and country 
  */
 const EuropeMap = () => {
 

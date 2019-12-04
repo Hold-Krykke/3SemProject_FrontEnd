@@ -20,7 +20,9 @@ const Footer = () => {
           </ul>
         </div>
         <div className="content__column content__column--right">
-          <a href="https://www.github.com/Hold-Krykke" className="column__link"><GithubIcon/></a>
+            <a href="#/about">About & Credits</a>
+            <br />
+            <a href="https://www.github.com/Hold-Krykke" className="column__link"><GithubIcon/></a>
         </div>
       </div>
       <p className="footer__copyright">Copyright 2019. All Rights Reserved.</p>
