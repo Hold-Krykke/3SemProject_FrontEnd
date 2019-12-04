@@ -5,7 +5,7 @@ import Europe from "./components/EuropeMap.jsx";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import City from "./components/City.jsx";
-import DateSelector from "./components/Date.jsx";
+// import DateSelector from "./components/Date.jsx";
 import Result from "./components/Result.jsx";
 import About from "./components/About.jsx";
 
@@ -27,21 +27,21 @@ function App() {
             <Router>
                 <Switch>
                     <Route path="/city" component={City} />
-                    <Route path="/date">
+                    {/* <Route path="/date">
                         <DateSelector
                             startDate={startDate}
                             setStartDate={setStartDate}
                             endDate={endDate}
                             setEndDate={setEndDate}
-                            setCity={setCity}
                         />
-                    </Route>
+                    </Route> */}
                     <Route path="/result">
                         <Result
                             endDate={endDate}
                             startDate={startDate}
                             country={country}
                             city={city}
+                            setClearCities={setClearCities}
                         />
                     </Route>
                     <Route path="/about" component={About} />
@@ -53,6 +53,10 @@ function App() {
                             setCountryProp={setCountry}
                             setCityProp={setCity}
                             setClearCities={setClearCities}
+                            startDate={startDate}
+                            setStartDate={setStartDate}
+                            endDate={endDate}
+                            setEndDate={setEndDate}
                         />
                     </Route>
                     <Route path="*" component={NoMatch} />

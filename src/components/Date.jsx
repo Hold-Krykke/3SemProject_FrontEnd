@@ -15,17 +15,18 @@ const todayButtonText = "Click me to set date to today.";
  * Make set modalShow to true when you want to show the modal.
  * onClick on city, set modalShow to true and put city on the Single Source of Truth in App.js
  */
-const DateSelector = ({ startDate, setStartDate, endDate, setEndDate, setCity }) => {
+const DateSelector = ({ 
+  startDate, 
+  setStartDate, 
+  endDate, 
+  setEndDate, 
+  showDatePicker: modalShow,
+  setShowDatePicker: setModalShow
+  }) => {
   // Set this on City Element. Make that onClick () => setModalShow(true);
-  const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <>
-      <br />
-      {/* Remove this button when you make onClick city setModalShow(true) */}
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Click me to open Modal
-      </Button>
       <br />
       <MyModal
         modalShow={modalShow}
@@ -35,11 +36,6 @@ const DateSelector = ({ startDate, setStartDate, endDate, setEndDate, setCity })
         endDate={endDate}
         setEndDate={setEndDate}
       />
-      <Link to="">
-        <button onClick={() => {setCity("")}}>
-          Back
-        </button>
-      </Link>
     </>
   );
 };

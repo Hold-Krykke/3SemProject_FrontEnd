@@ -2,13 +2,25 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import "../App.css";
 import MapViewer from "./MapViewer";
+import DateSelector from "./Date.jsx";
 
 
 /**	
  * Parent component, controls state for city and country 
  * The names can be confusing so all props have "Prop" added to their names
  */
-const EuropeMap = ({ countryProp, setCountryProp, cityProp, setCityProp, clearCities, setClearCities}) => {
+const EuropeMap = ({ 
+    countryProp, 
+    setCountryProp, 
+    cityProp, 
+    setCityProp, 
+    clearCities, 
+    setClearCities,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate
+    }) => {
 
     const initialState = [{
         cityName: '',
@@ -17,6 +29,7 @@ const EuropeMap = ({ countryProp, setCountryProp, cityProp, setCityProp, clearCi
     }];
     const countriesWithCities = hardcodedCountryList();
     const [chosenCountryWithCities, setChosenCountryWithCities] = useState(initialState);
+    const [showDatePicker, setShowDatePicker] = useState(false);
 
     function handleCountryChange(country) {
         setCountryProp(country);
@@ -25,12 +38,14 @@ const EuropeMap = ({ countryProp, setCountryProp, cityProp, setCityProp, clearCi
     function handleCityChange(city) {
         setCityProp(city);
         setClearCities(true);
-        setCountryProp("");
+        setShowDatePicker(true);
     };
 
     function handleCityView(clear){
         if (clear) {
             setChosenCountryWithCities([]);
+            setCountryProp("");
+            setCityProp("");
             return;
         }
         if (cityProp !== '') {
@@ -58,16 +73,22 @@ const EuropeMap = ({ countryProp, setCountryProp, cityProp, setCityProp, clearCi
                     countryChosen={countryProp} />
 
                 {chosenCountryWithCities && chosenCountryWithCities.map((city, index) => (
-                    <Link to="/date">
                     <button style={{ position: 'absolute', top: city.y + 'px', left: city.x + 'px' }}
                         onClick={() => handleCityChange(city.cityName)} value={city.cityName} key={index} >{city.cityName}</button>
-                    </Link>
                 ))}
             </div>
             <div id="outputCountry">
                 <p>{countryProp}</p>
                 <p>{cityProp}</p>
             </div>
+            <DateSelector
+            showDatePicker={showDatePicker}
+            setShowDatePicker={setShowDatePicker}
+            startDate={startDate}
+            setStartDate={setStartDate}
+            endDate={endDate}
+            setEndDate={setEndDate}
+            />
         </>
     );
 };
