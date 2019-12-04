@@ -2,3 +2,71 @@
     background-color:#BFE5E8;
     padding: 3rem 0;
 }
+
+.cityButton {
+    text-transform: uppercase;
+    color: #fff;
+    padding: 0 10px;
+    height: 40px;
+    border-radius: 10px;
+    line-height: 40px;
+    border: none;
+    font-size: 18px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%) 0 0 no-repeat;
+    border: none;
+}
+
+.cityButton:hover,
+.cityButton:active,
+.cityButton:focus {
+    outline: 0;
+}
+
+.cityButton:hover:before,
+.cityButton:active:before,
+.cityButton:focus:before {
+    content: "";
+    position: absolute;
+    width: calc(100% + 10px);
+    height: 50px;
+    top: -5px;
+    left: -5px;
+    background: none;
+    color: transparent;
+    border-radius: 15px;
+    border: 5px solid rgba(255, 255, 255, 0.75);
+}
+
+#outputCountry {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+}
+
+#outputCountry p {
+    position: relative;
+    margin-left: 50px;
+    margin-bottom: 0;
+    height: 24px;
+    line-height: 24px;
+    text-transform: uppercase;
+}
+
+#outputCountry p:before {
+    content: "→";
+    position: absolute;
+    left: -33px;
+}
+
+#outputCountry p:empty:before {
+    content: none;
+}
+
+#outputCountry p:first-child {
+    margin-left: 0;
+}
+
+#outputCountry p:first-child:before {
+    content: none;
+}

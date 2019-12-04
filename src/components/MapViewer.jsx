@@ -43,7 +43,7 @@ const MapViewer = props => {
     let highlightStyle =
         "fill:#29B6F6;stroke:#black;stroke-width:0.11153841;stroke-miterlimit:4;stroke-dasharray:none";
     let standardStyle =
-        "fill:#c0c0c0;stroke:#black;stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none";
+        "";
 
     function handleMapClick(event) {
 

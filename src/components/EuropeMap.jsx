@@ -44,7 +44,7 @@ const EuropeMap = () => {
                     countryChosen={countryChosen} />
 
                 {chosenCountryWithCities && chosenCountryWithCities.map((city, index) => (
-                    <button style={{ position: 'absolute', top: city.y + 'px', left: city.x + 'px' }}
+                    <button className="cityButton" style={{ position: 'absolute', top: city.y + 'px', left: city.x + 'px' }}
                         onClick={() => handleCityChange(city.cityName)} value={city.cityName} key={index} >{city.cityName}</button>
                 ))}
             </div>
