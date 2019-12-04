@@ -179,10 +179,7 @@ const Events = ({data}) => {
 
 const Weather = ({data}) => {
 	data = data[0];
-	console.log('WeatherDataInWeatherComponent: ', data);
-	//let weatherData = data.map(element => element.dateTime);
-
-	//console.log('data.wdata: ', weatherData);
+	//console.log('WeatherDataInWeatherComponent: ', data);
 	if (!data) {
 		return <p>No weather info available for this selection.</p>;
 	} else if (data.length > 0) {
@@ -202,8 +199,7 @@ const Weather = ({data}) => {
 									weatherIcon,
 									weatherStatus,
 									windDirection,
-									windSpeed,
-									noData
+									windSpeed
 								}) => (
 									<>
 										<h3>weather object data</h3>
@@ -220,17 +216,10 @@ const Weather = ({data}) => {
 											<li>weatherStatus: {weatherStatus}</li>
 											<li>windDirection: {windDirection}</li>
 											<li>windSpeed: {windSpeed}</li>
-											{noData && <li>noData: {noData}</li>}
 										</ul>
 									</>
 								)
 							)}
-							{data.forEach((element, index, array) => {
-								console.log('element: ', element);
-								console.log('index: ', index);
-								console.log('key?: ', Object.keys(array[index]));
-								console.log();
-							})}
 						</Card.Text>
 					</Card.Body>
 				</Card>
