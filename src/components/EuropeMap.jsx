@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import "../App.css";
 import MapViewer from "./MapViewer";
 
@@ -45,8 +46,10 @@ const EuropeMap = ({ countryProp, setCountryProp, cityProp, setCityProp }) => {
                     countryChosen={countryProp} />
 
                 {chosenCountryWithCities && chosenCountryWithCities.map((city, index) => (
+                    <Link to="/date">
                     <button style={{ position: 'absolute', top: city.y + 'px', left: city.x + 'px' }}
                         onClick={() => handleCityChange(city.cityName)} value={city.cityName} key={index} >{city.cityName}</button>
+                    </Link>
                 ))}
             </div>
             <div id="outputCountry">
