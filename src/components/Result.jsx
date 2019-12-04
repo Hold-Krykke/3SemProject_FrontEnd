@@ -22,29 +22,31 @@ const Result = ({startDate, endDate, country, city}) => {
 				if (err.status) {
 					err.fullError.then(err => {
 						if (err.message) {
-							console.log('errMsg ', err.message);
-							console.log('userMessage ', userMessage);
-							setUserMessage([
+							setUserMessage({
 								...userMessage,
-								//backend error
-								<>
-									We had trouble loading event data:
-									<br />
-									{err.message}
-									<br />
-								</>
-							]);
+								...(
+									//backend error
+									<>
+										We had trouble loading event data:
+										<br />
+										{err.message}
+										<br />
+									</>
+								)
+							});
 						} else {
 							console.log('Network error #1');
-							setUserMessage([
+							setUserMessage({
 								...userMessage,
-								//uncaught api error or bug
-								<>
-									We had trouble loading event data:
-									<br />
-									Network Error.(Error code #1)
-								</>
-							]);
+								...(
+									//uncaught api error or bug
+									<>
+										We had trouble loading event data:
+										<br />
+										Network Error.(Error code #1)
+									</>
+								)
+							});
 						}
 					});
 				} else {
@@ -72,17 +74,17 @@ const Result = ({startDate, endDate, country, city}) => {
 				if (err.status) {
 					err.fullError.then(err => {
 						if (err.message) {
-							console.log('errMsg', err.message);
-							console.log('userMessage ', userMessage);
-							setUserMessage([
+							setUserMessage({
 								...userMessage,
-								//backend error
-								<>
-									We had trouble loading weather data:
-									<br />
-									{err.message}
-								</>
-							]);
+								...(
+									//backend error
+									<>
+										We had trouble loading weather data:
+										<br />
+										{err.message}
+									</>
+								)
+							});
 						} else {
 							console.log('Network error #3');
 							setUserMessage([
@@ -121,9 +123,9 @@ const Result = ({startDate, endDate, country, city}) => {
 					<p>City = {city}</p>
 					<ControlledTabs
 						eventData={eventData}
-            weatherData={weatherData}
-            startDate={startDate}
-            endDate={endDate}
+						weatherData={weatherData}
+						startDate={startDate}
+						endDate={endDate}
 					/>
 				</Modal.Body>
 				<Modal.Footer>
@@ -136,12 +138,7 @@ const Result = ({startDate, endDate, country, city}) => {
 	);
 };
 
-const ControlledTabs = ({
-	eventData,
-  weatherData,
-  startDate,
-  endDate
-}) => {
+const ControlledTabs = ({eventData, weatherData, startDate, endDate}) => {
 	const [key, setKey] = useState('events');
 	let listSize = 0;
 	if (eventData) listSize = Object.keys(eventData).length;
@@ -162,7 +159,7 @@ const ControlledTabs = ({
 				<Events data={eventData} />
 			</Tab>
 			<Tab eventKey="weather" title="Weather">
-				<Weather data={weatherData} startDate={startDate} endDate={endDate}/>
+				<Weather data={weatherData} startDate={startDate} endDate={endDate} />
 			</Tab>
 		</Tabs>
 	);
@@ -217,8 +214,11 @@ const Events = ({data}) => {
 };
 
 const Weather = ({data, startDate, endDate}) => {
-  //console.log('WeatherDataInWeatherComponent: ', data);
-  const weatherHeader = JSON.stringify(startDate) != JSON.stringify(endDate) ? "Weather info for the next 5 days" : "Weather for the chosen day";
+	//console.log('WeatherDataInWeatherComponent: ', data);
+	const weatherHeader =
+		JSON.stringify(startDate) != JSON.stringify(endDate)
+			? 'Weather info for the next 5 days'
+			: 'Weather for the chosen day';
 	if (!data) {
 		return <p>No weather info available for this selection.</p>;
 	} else if (data.length > 0) {
