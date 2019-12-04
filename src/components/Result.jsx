@@ -6,7 +6,6 @@ import parseDate from "../utilities";
 const Result = ({ startDate, endDate, country, city }) => {
   const [eventData, setEventData] = useState();
   const [weatherData, setWeatherData] = useState([]);
-  const [fetchWeather, setFetchWeather] = useState(false); //trigger fetch onClick tab
   const [userMessage, setUserMessage] = useState("Loading Events...");
 
   //For events
@@ -36,22 +35,23 @@ const Result = ({ startDate, endDate, country, city }) => {
 
   //For weather
   useEffect(() => {
-    console.log("useEffect - weather");
     if (!eventData) {
       setUserMessage("Event didn't load correctly");
       return;
     }
     setWeatherData([]);
+    let previousDateArray = [];
+    let fetchedData = [];
     for (const event in eventData) {
       if (eventData.hasOwnProperty(event)) {
         const element = eventData[event];
-
         let dateArray = element.eventDate.split("-"); //yyyy-mm-dd format, so [0] is year, and so on
-        console.log("Date array: " + dateArray);
+        if (JSON.stringify(dateArray) == JSON.stringify(previousDateArray)) continue;
+        previousDateArray = dateArray;
         Facade.getWeather(city, dateArray[0], dateArray[1], dateArray[2])
           .then(fetchData => {
-            setWeatherData([...weatherData, fetchData[0]]);
-
+            setWeatherData([...fetchedData, fetchData[0]]);
+            fetchedData = [...fetchedData, fetchData[0]];
             //always returns array with 1 field
             // else //need some error handling, as there are cases that return an empty array. (?)
             // 	setWeatherData([
@@ -75,6 +75,7 @@ const Result = ({ startDate, endDate, country, city }) => {
               setUserMessage("Network Error. (Error code #2)");
             }
           });
+        //setWeatherData([...fetchedData]); Should set state here instead of inside loop to avoid re-rendering weather component too many times
       }
     }
   }, [eventData]);
@@ -88,12 +89,7 @@ const Result = ({ startDate, endDate, country, city }) => {
           <p>End Date = {parseDate(endDate)}</p>
           <p>Country = {country}</p>
           <p>City = {city}</p>
-          <ControlledTabs
-            eventData={eventData}
-            weatherData={weatherData}
-            fetchWeather={fetchWeather}
-            setFetchWeather={setFetchWeather}
-          />
+          <ControlledTabs eventData={eventData} weatherData={weatherData} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={() => window.history.back()}>
@@ -105,12 +101,7 @@ const Result = ({ startDate, endDate, country, city }) => {
   );
 };
 
-const ControlledTabs = ({
-  eventData,
-  weatherData,
-  fetchWeather,
-  setFetchWeather
-}) => {
+const ControlledTabs = ({ eventData, weatherData }) => {
   const [key, setKey] = useState("events");
   let listSize = 0;
   if (eventData) listSize = Object.keys(eventData).length;
@@ -120,7 +111,6 @@ const ControlledTabs = ({
       activeKey={key}
       onSelect={k => {
         setKey(k);
-        if (k === "weather") setFetchWeather(!fetchWeather);
       }}
     >
       <Tab
@@ -195,6 +185,7 @@ const Events = ({ data }) => {
 
 const Weather = ({ data }) => {
   //console.log('WeatherDataInWeatherComponent: ', data);
+  console.log("Weather component did mount");
   if (!data) {
     return <p>No weather info available for this selection.</p>;
   } else if (data.length > 0) {
