@@ -4,7 +4,7 @@ import MapViewer from "./MapViewer";
 
 
 /**	
- * Parent component, controls state for city and country * 	
+ * Parent component, controls state for city and country 
  */
 const EuropeMap = () => {
 
