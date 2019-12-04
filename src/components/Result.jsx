@@ -21,15 +21,36 @@ const Result = ({startDate, endDate, country, city}) => {
 				if (err.status) {
 					err.fullError.then(err => {
 						console.log(err);
-						if (err.message == 'No events for this City exists') {
-							setUserMessage('No events for given city and date found'); //backend error
+						if (err.message) {
+							setUserMessage(
+								//backend error
+								<>
+									We had trouble loading event data:
+									<br />
+									{err.message}
+								</>
+							);
 						} else {
-							setUserMessage('Network Error.'); //uncaught api error or bug
+							console.log('Network error #1');
+							setUserMessage(
+								//uncaught api error or bug
+								<>
+									We had trouble loading event data:
+									<br />
+									Network Error.(Error code #1)
+								</>
+							);
 						}
 					});
 				} else {
-					console.log('Network error');
-					setUserMessage('Network Error.');
+					console.log('Network error #2');
+					setUserMessage(
+						<>
+							We had trouble loading event data:
+							<br />
+							Network Error.(Error code #2)
+						</>
+					);
 				}
 			});
 	}, []);
@@ -38,8 +59,10 @@ const Result = ({startDate, endDate, country, city}) => {
 	useEffect(() => {
 		Facade.getWeather(city, startDate, endDate)
 			.then(fetchData => {
-				console.log('fetchData: ', fetchData);
-				if (fetchData) setWeatherData([...weatherData, fetchData]);
+				//console.log('fetchData: ', fetchData);
+				if (fetchData) {
+					setWeatherData([...weatherData, fetchData]);
+				}
 				//always returns array with 1 field
 				// else //need some error handling, as there are cases that return an empty array. (?)
 				// 	setWeatherData([
@@ -52,15 +75,36 @@ const Result = ({startDate, endDate, country, city}) => {
 				if (err.status) {
 					err.fullError.then(err => {
 						console.log(err);
-						if (err.message == 'No events for this City exists') {
-							setUserMessage('No events for given city and date found'); //HERE it should be 'some dates didn't return weather data' && check on all possible err.messages
+						if (err.message) {
+							setUserMessage(
+								//backend error
+								<>
+									We had trouble loading weather data:
+									<br />
+									{err.message}
+								</>
+							);
 						} else {
-							setUserMessage('Network Error. (Error code #1)'); //uncaught api error or bug
+							console.log('Network error #3');
+							setUserMessage(
+								//uncaught api error or bug
+								<>
+									We had trouble loading weather data:
+									<br />
+									Network Error.(Error code #3)
+								</>
+							);
 						}
 					});
 				} else {
-					console.log('Network error');
-					setUserMessage('Network Error. (Error code #2)');
+					console.log('Network error #4');
+					setUserMessage(
+						<>
+							We had trouble loading weather data:
+							<br />
+							Network Error.(Error code #4)
+						</>
+					);
 				}
 			});
 	}, [eventData && fetchWeather]);
