@@ -5,8 +5,7 @@ import parseDate from '../utilities';
 
 const Result = ({startDate, endDate, country, city}) => {
 	const [eventData, setEventData] = useState();
-	const [weatherData, setWeatherData] = useState([]);
-	const [fetchWeather, setFetchWeather] = useState(false); //trigger fetch onClick tab
+	const [weatherData, setWeatherData] = useState();
 	const [userMessage, setUserMessage] = useState('Loading Events...');
 
 	//For events
@@ -57,12 +56,14 @@ const Result = ({startDate, endDate, country, city}) => {
 
 	//For weather
 	useEffect(() => {
+		if (!eventData) {
+			setUserMessage("Event didn't load correctly");
+			return;
+		}
+
 		Facade.getWeather(city, startDate, endDate)
 			.then(fetchData => {
-				//console.log('fetchData: ', fetchData);
-				if (fetchData) {
-					setWeatherData([...weatherData, fetchData]);
-				}
+				setWeatherData(fetchData);
 			})
 			.catch(err => {
 				console.log(err);
@@ -101,7 +102,7 @@ const Result = ({startDate, endDate, country, city}) => {
 					);
 				}
 			});
-	}, [eventData && fetchWeather]);
+	}, []);
 
 	return (
 		<>
@@ -114,9 +115,9 @@ const Result = ({startDate, endDate, country, city}) => {
 					<p>City = {city}</p>
 					<ControlledTabs
 						eventData={eventData}
-						weatherData={weatherData}
-						fetchWeather={fetchWeather}
-						setFetchWeather={setFetchWeather}
+            weatherData={weatherData}
+            startDate={startDate}
+            endDate={endDate}
 					/>
 				</Modal.Body>
 				<Modal.Footer>
@@ -131,9 +132,9 @@ const Result = ({startDate, endDate, country, city}) => {
 
 const ControlledTabs = ({
 	eventData,
-	weatherData,
-	fetchWeather,
-	setFetchWeather
+  weatherData,
+  startDate,
+  endDate
 }) => {
 	const [key, setKey] = useState('events');
 	let listSize = 0;
@@ -144,7 +145,6 @@ const ControlledTabs = ({
 			activeKey={key}
 			onSelect={k => {
 				setKey(k);
-				if (k === 'weather') setFetchWeather(!fetchWeather);
 			}}>
 			<Tab
 				eventKey="events"
@@ -156,7 +156,7 @@ const ControlledTabs = ({
 				<Events data={eventData} />
 			</Tab>
 			<Tab eventKey="weather" title="Weather">
-				<Weather data={weatherData} />
+				<Weather data={weatherData} startDate={startDate} endDate={endDate}/>
 			</Tab>
 		</Tabs>
 	);
@@ -210,9 +210,9 @@ const Events = ({data}) => {
 	}
 };
 
-const Weather = ({data}) => {
-	data = data[0];
-	//console.log('WeatherDataInWeatherComponent: ', data);
+const Weather = ({data, startDate, endDate}) => {
+  //console.log('WeatherDataInWeatherComponent: ', data);
+  const weatherHeader = JSON.stringify(startDate) != JSON.stringify(endDate) ? "Weather info for the next 5 days" : "Weather for the chosen day";
 	if (!data) {
 		return <p>No weather info available for this selection.</p>;
 	} else if (data.length > 0) {
@@ -220,7 +220,7 @@ const Weather = ({data}) => {
 			<>
 				<Card border="light">
 					<Card.Body>
-						<Card.Title>Weather Info</Card.Title>
+						<Card.Title>{weatherHeader}</Card.Title>
 						<Card.Text>
 							{data.map(
 								({
