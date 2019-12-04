@@ -3,6 +3,11 @@ import styles from './FooterStyles.css';
 import { GithubIcon } from './Icons'
 
 const Footer = () => {
+  
+  function getYear() {
+    return new Date().getFullYear();
+  }
+  
   // Contains zero styling - pure HTML (react)
   return (
     <footer className='footer'>
@@ -20,12 +25,17 @@ const Footer = () => {
           </ul>
         </div>
         <div className="content__column content__column--right">
-            <a href="#/about">About & Credits</a>
-            <br />
-            <a href="https://www.github.com/Hold-Krykke" className="column__link"><GithubIcon/></a>
+            <ul className="column__list">
+              <li className="column__list-item">
+                <a href="#/about">About & Credits</a>
+              </li>
+              <li className="column__list-item">
+                <a href="https://www.github.com/Hold-Krykke" className="column__link"><GithubIcon/></a>
+              </li>
+            </ul>
         </div>
       </div>
-      <p className="footer__copyright">Copyright 2019. All Rights Reserved.</p>
+      <p className="footer__copyright">Copyright { getYear() }. All Rights Reserved.</p>
     </footer>
   );
 };

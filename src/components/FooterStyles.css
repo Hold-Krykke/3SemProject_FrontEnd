@@ -60,6 +60,11 @@
     margin-bottom: 10px;
 }
 
+.column__list-item a {
+    color: #fff;
+    text-decoration: none;
+}
+
 .column__link {
 
 }
