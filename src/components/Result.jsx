@@ -36,11 +36,6 @@ const Result = ({startDate, endDate, country, city}) => {
 
 	//For weather
 	useEffect(() => {
-		if (!eventData) {
-			setUserMessage("Event didn't load correctly");
-			return;
-		}
-
 		Facade.getWeather(city, startDate, endDate)
 			.then(fetchData => {
 				console.log('fetchData: ', fetchData);
