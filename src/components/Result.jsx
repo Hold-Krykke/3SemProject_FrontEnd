@@ -5,11 +5,12 @@ import parseDate from '../utilities';
 
 const Result = ({startDate, endDate, country, city}) => {
 	const [eventData, setEventData] = useState();
+	const [userMessage, setUserMessage] = useState('');
 	const [weatherData, setWeatherData] = useState();
-	const [userMessage, setUserMessage] = useState('Loading Events...');
 
 	//For events
 	useEffect(() => {
+		setUserMessage('Loading Events...');
 		Facade.getEvents(startDate, endDate, country, city)
 			.then(fetchData => {
 				//console.log('fetchData:', fetchData);
@@ -17,39 +18,45 @@ const Result = ({startDate, endDate, country, city}) => {
 				setUserMessage('');
 			})
 			.catch(err => {
+				console.log(err);
 				if (err.status) {
 					err.fullError.then(err => {
-						console.log(err);
 						if (err.message) {
-							setUserMessage(
+							console.log('errMsg ', err.message);
+							console.log('userMessage ', userMessage);
+							setUserMessage([
+								...userMessage,
 								//backend error
 								<>
 									We had trouble loading event data:
 									<br />
 									{err.message}
+									<br />
 								</>
-							);
+							]);
 						} else {
 							console.log('Network error #1');
-							setUserMessage(
+							setUserMessage([
+								...userMessage,
 								//uncaught api error or bug
 								<>
 									We had trouble loading event data:
 									<br />
 									Network Error.(Error code #1)
 								</>
-							);
+							]);
 						}
 					});
 				} else {
 					console.log('Network error #2');
-					setUserMessage(
+					setUserMessage([
+						...userMessage,
 						<>
 							We had trouble loading event data:
 							<br />
 							Network Error.(Error code #2)
 						</>
-					);
+					]);
 				}
 			});
 	}, []);
@@ -65,41 +72,45 @@ const Result = ({startDate, endDate, country, city}) => {
 			.then(fetchData => {
 				setWeatherData(fetchData);
 			})
-			.catch(err => {
+			.catch(async err => {
 				console.log(err);
 				if (err.status) {
 					err.fullError.then(err => {
-						console.log(err);
 						if (err.message) {
-							setUserMessage(
+							console.log('errMsg', err.message);
+							console.log('userMessage ', userMessage);
+							setUserMessage([
+								...userMessage,
 								//backend error
 								<>
 									We had trouble loading weather data:
 									<br />
 									{err.message}
 								</>
-							);
+							]);
 						} else {
 							console.log('Network error #3');
-							setUserMessage(
+							setUserMessage([
+								...userMessage,
 								//uncaught api error or bug
 								<>
 									We had trouble loading weather data:
 									<br />
 									Network Error.(Error code #3)
 								</>
-							);
+							]);
 						}
 					});
 				} else {
 					console.log('Network error #4');
-					setUserMessage(
+					setUserMessage([
+						...userMessage,
 						<>
 							We had trouble loading weather data:
 							<br />
 							Network Error.(Error code #4)
 						</>
-					);
+					]);
 				}
 			});
 	}, []);
