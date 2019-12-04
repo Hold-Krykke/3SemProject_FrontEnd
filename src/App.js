@@ -14,9 +14,10 @@ function App() {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     // Date states end
-    const [city, setCity] = useState(""); // OSLO IS TEST DATA. REPLACE
-    const [country, setCountry] = useState(""); // NORWAY IS TEST DATA. REPLACE
+    const [city, setCity] = useState(""); 
+    const [country, setCountry] = useState("");
 
+    const [clearCities, setClearCities] = useState(false);
     return (
         <div className="App">
             {
@@ -32,6 +33,7 @@ function App() {
                             setStartDate={setStartDate}
                             endDate={endDate}
                             setEndDate={setEndDate}
+                            setCity={setCity}
                         />
                     </Route>
                     <Route path="/result">
@@ -47,8 +49,10 @@ function App() {
                         <Europe
                             countryProp={country}
                             cityProp={city}
+                            clearCities={clearCities}
                             setCountryProp={setCountry}
                             setCityProp={setCity}
+                            setClearCities={setClearCities}
                         />
                     </Route>
                     <Route path="*" component={NoMatch} />

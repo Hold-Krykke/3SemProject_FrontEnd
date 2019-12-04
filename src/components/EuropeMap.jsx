@@ -8,7 +8,7 @@ import MapViewer from "./MapViewer";
  * Parent component, controls state for city and country 
  * The names can be confusing so all props have "Prop" added to their names
  */
-const EuropeMap = ({ countryProp, setCountryProp, cityProp, setCityProp }) => {
+const EuropeMap = ({ countryProp, setCountryProp, cityProp, setCityProp, clearCities, setClearCities}) => {
 
     const initialState = [{
         cityName: '',
@@ -24,15 +24,27 @@ const EuropeMap = ({ countryProp, setCountryProp, cityProp, setCityProp }) => {
 
     function handleCityChange(city) {
         setCityProp(city);
+        setClearCities(true);
+        setCountryProp("");
     };
 
-    useEffect(() => {
+    function handleCityView(clear){
+        if (clear) {
+            setChosenCountryWithCities([]);
+            return;
+        }
         if (cityProp !== '') {
             setCityProp('');
         }
         let showCities = countriesWithCities.filter(
             country => { return country.countryName === countryProp }).map(matchingCountry => matchingCountry.cities);
         setChosenCountryWithCities(...showCities);
+    }
+    useEffect(() => {
+        handleCityView(clearCities);
+        if (clearCities) {
+            setClearCities(false);
+        }
     }, [countryProp]);
 
     return (
