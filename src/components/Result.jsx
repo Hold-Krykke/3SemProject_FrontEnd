@@ -63,12 +63,6 @@ const Result = ({startDate, endDate, country, city}) => {
 				if (fetchData) {
 					setWeatherData([...weatherData, fetchData]);
 				}
-				//always returns array with 1 field
-				// else //need some error handling, as there are cases that return an empty array. (?)
-				// 	setWeatherData([
-				// 		...weatherData,
-				// 		{noData: `No data available for${element.eventData}`}
-				// 	]);
 			})
 			.catch(err => {
 				console.log(err);
