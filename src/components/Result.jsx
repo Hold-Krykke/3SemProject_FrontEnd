@@ -171,7 +171,7 @@ const Events = ({data}) => {
 };
 
 const Weather = ({data, startDate, endDate}) => {
-  //console.log('WeatherDataInWeatherComponent: ', data);
+  //The weather header is sometimes not correct even if a single date is chosen
   const weatherHeader = JSON.stringify(startDate) != JSON.stringify(endDate) ? "Weather info for the next 5 days" : "Weather for the chosen day";
 	if (!data) {
 		return <p>No weather info available for this selection.</p>;
