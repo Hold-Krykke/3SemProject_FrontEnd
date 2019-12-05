@@ -3,7 +3,7 @@ import {Tab, Tabs, Modal, Button, Card, Badge} from 'react-bootstrap';
 import Facade from '../apiFacade';
 import parseDate from '../utilities';
 
-const Result = ({startDate, endDate, country, city, setClearCities}) => {
+const Result = ({startDate, endDate, country, city}) => {
 	const [eventData, setEventData] = useState();
 	const [userMessage, setUserMessage] = useState('');
 	const [weatherData, setWeatherData] = useState();
@@ -129,7 +129,7 @@ const Result = ({startDate, endDate, country, city, setClearCities}) => {
 					/>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="primary" onClick={() => {setClearCities(true); window.history.back()}}>
+					<Button variant="primary" onClick={() => window.history.back()}>
 						Go back
 					</Button>
 				</Modal.Footer>

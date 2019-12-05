@@ -15,10 +15,10 @@ const About = () => {
                                     A.P. Computer Science 3. semester exam project, created by Hold Krykke
                                 </Card.Text>
                                 <ListGroup variant="flush">
-                                    <ListGroup.Item><a href="http://github.com/Runi-VN">rn118 - Rúni Vedel Niclassen</a></ListGroup.Item>
-                                    <ListGroup.Item><a href="http://github.com/MalteMagnussen">mh748 - Malte Hviid-Magnussen</a></ListGroup.Item>
-                                    <ListGroup.Item><a href="http://github.com/HrBjarup">ab363 - Asger Koch Bjarup</a></ListGroup.Item>
-                                    <ListGroup.Item><a href="http://github.com/Castau">cs340 - Camilla Jenny Valerius Staunstrup</a></ListGroup.Item>
+                                    <ListGroup.Item><a href="github.com/Runi-VN">rn118 - Rúni Vedel Niclassen</a></ListGroup.Item>
+                                    <ListGroup.Item><a href="github.com/MalteMagnussen">mh748 - Malte Hviid-Magnussen</a></ListGroup.Item>
+                                    <ListGroup.Item><a href="github.com/HrBjarup">ab363 - Asger Koch Bjarup</a></ListGroup.Item>
+                                    <ListGroup.Item><a href="github.com/Castau">cs340 - Camilla Jenny Valerius Staunstrup</a></ListGroup.Item>
                                 </ListGroup>
                             </Card.Body>
                         </Card>

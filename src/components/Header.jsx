@@ -9,10 +9,10 @@ const Header = () => {
           <Route path="/result">
             <p>
               <a href="#/">Click a Country</a> ->{" "}
-              <a href="#/">Click a City</a> -> Pick a Date -> Result
+              <a href="#/city">Click a City</a> -> Pick a Date -> Result
             </p>
           </Route>
-          <Route path="/">
+          <Route path="/city">
             <p>
               <a href="#/">Click a Country</a> -> Click a City -> Pick a Date ->
               Result

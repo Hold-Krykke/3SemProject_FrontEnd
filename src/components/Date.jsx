@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker"; // Required for Date Picker to work.
 import "react-datepicker/dist/react-datepicker.css"; // Required for Date Picker to work.
 import "react-datepicker/dist/react-datepicker-cssmodules.css"; // Required for Date Picker to work.
-import { Modal, CardDeck, Card, Button, ModalBody } from "react-bootstrap";
+import { Modal, CardDeck, Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Text or Formats used multiple places throughout code.
@@ -14,24 +14,19 @@ const todayButtonText = "Click me to set date to today.";
  * Make set modalShow to true when you want to show the modal.
  * onClick on city, set modalShow to true and put city on the Single Source of Truth in App.js
  */
-const DateSelector = ({ 
-  city,
-  country,
-  startDate, 
-  setStartDate, 
-  endDate, 
-  setEndDate, 
-  showDatePicker: modalShow,
-  setShowDatePicker: setModalShow
-  }) => {
+const DateSelector = ({ startDate, setStartDate, endDate, setEndDate }) => {
   // Set this on City Element. Make that onClick () => setModalShow(true);
+  const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <>
       <br />
+      {/* Remove this button when you make onClick city setModalShow(true) */}
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+        Click me to open Modal
+      </Button>
+      <br />
       <MyModal
-        city={city}
-        country={country}
         modalShow={modalShow}
         setModalShow={setModalShow}
         startDate={startDate}
@@ -47,8 +42,6 @@ const DateSelector = ({
  * Modal.
  */
 const MyModal = ({
-  city,
-  country,
   modalShow,
   setModalShow,
   startDate,
@@ -69,9 +62,6 @@ const MyModal = ({
       <Modal.Header closeButton>
         <h1>Select Date</h1>
       </Modal.Header>
-      <ModalBody>
-        <h4>Location: {country} - {city}</h4>
-      </ModalBody>
       <DateSelectorContent
         startDate={startDate}
         setStartDate={setStartDate}
