@@ -23,7 +23,11 @@ const EuropeMap = () => {
     };
 
     function handleCityChange(city) {
-        setCityChosen(city);
+        setCityProp(city);
+        setClearCities(true);
+        setShowDatePicker(true);
+        setStartDate(new Date());
+        setEndDate(new Date());
     };
 
     useEffect(() => {
