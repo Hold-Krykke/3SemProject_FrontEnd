@@ -4,8 +4,6 @@ import "./App.css";
 import Europe from "./components/EuropeMap.jsx";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
-import City from "./components/City.jsx";
-import DateSelector from "./components/Date.jsx";
 import Result from "./components/Result.jsx";
 import About from "./components/About.jsx";
 
@@ -14,9 +12,10 @@ function App() {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     // Date states end
-    const [city, setCity] = useState("Oslo"); // OSLO IS TEST DATA. REPLACE
-    const [country, setCountry] = useState("Norway"); // NORWAY IS TEST DATA. REPLACE
+    const [city, setCity] = useState(""); 
+    const [country, setCountry] = useState("");
 
+    const [clearCities, setClearCities] = useState(false);
     return (
         <div className="App">
             {
@@ -25,25 +24,30 @@ function App() {
             <Header />
             <Router>
                 <Switch>
-                    <Route path="/city" component={City} />
-                    <Route path="/date">
-                        <DateSelector
-                            startDate={startDate}
-                            setStartDate={setStartDate}
-                            endDate={endDate}
-                            setEndDate={setEndDate}
-                        />
-                    </Route>
                     <Route path="/result">
                         <Result
                             endDate={endDate}
                             startDate={startDate}
                             country={country}
                             city={city}
+                            setClearCities={setClearCities}
                         />
                     </Route>
                     <Route path="/about" component={About} />
-                    <Route exact path="/" component={Europe} />
+                    <Route exact path="/">
+                        <Europe
+                            countryProp={country}
+                            cityProp={city}
+                            clearCities={clearCities}
+                            setCountryProp={setCountry}
+                            setCityProp={setCity}
+                            setClearCities={setClearCities}
+                            startDate={startDate}
+                            setStartDate={setStartDate}
+                            endDate={endDate}
+                            setEndDate={setEndDate}
+                        />
+                    </Route>
                     <Route path="*" component={NoMatch} />
                 </Switch>
             </Router>

@@ -2,12 +2,24 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import MapViewer from "./MapViewer";
 import styles from './EuropeMapStyles.css'
-
+import DateSelector from "./Date.jsx";
 
 /**	
  * Parent component, controls state for city and country 
+ * The names can be confusing so some of the props have "Prop" added to their names
  */
-const EuropeMap = () => {
+const EuropeMap = ({ 
+    countryProp, 
+    setCountryProp, 
+    cityProp, 
+    setCityProp, 
+    clearCities, 
+    setClearCities,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate
+    }) => {
 
     const initialState = [{
         cityName: '',
@@ -16,32 +28,47 @@ const EuropeMap = () => {
     }];
     const countriesWithCities = hardcodedCountryList();
     const [chosenCountryWithCities, setChosenCountryWithCities] = useState(initialState);
-    const [countryChosen, setCountryChosen] = useState('');
-    const [cityChosen, setCityChosen] = useState('');
+    const [showDatePicker, setShowDatePicker] = useState(false);
 
     function handleCountryChange(country) {
-        setCountryChosen(country);
+        setCountryProp(country);
     };
 
     function handleCityChange(city) {
-        setCityChosen(city);
+        setCityProp(city);
+        setClearCities(true);
+        setShowDatePicker(true);
+        setStartDate(new Date());
+        setEndDate(new Date());
     };
 
-    useEffect(() => {
-        if (cityChosen !== '') {
-            setCityChosen('');
+    function handleCityView(clear){
+        if (clear) {
+            setChosenCountryWithCities([]);
+            setCountryProp("");
+            setCityProp("");
+            return;
+        }
+        if (cityProp !== '') {
+            setCityProp('');
         }
         let showCities = countriesWithCities.filter(
-            country => { return country.countryName === countryChosen }).map(matchingCountry => matchingCountry.cities);
+            country => { return country.countryName === countryProp }).map(matchingCountry => matchingCountry.cities);
         setChosenCountryWithCities(...showCities);
-    }, [countryChosen]);
+    }
+    useEffect(() => {
+        handleCityView(clearCities);
+        if (clearCities) {
+            setClearCities(false);
+        }
+    }, [countryProp]);
 
     return (
         <div className="europeMapContainer">
             <div id="mapcontainer" style={{ position: "relative", display: "inline-block" }}>
                 <MapViewer
                     onCountryChange={handleCountryChange}
-                    countryChosen={countryChosen} />
+                    countryChosen={countryProp} />
 
                 {chosenCountryWithCities && chosenCountryWithCities.map((city, index) => (
                     <button className="cityButton" style={{ position: 'absolute', top: city.y + 'px', left: city.x + 'px' }}
@@ -49,9 +76,18 @@ const EuropeMap = () => {
                 ))}
             </div>
             <div id="outputCountry">
-                <p>{countryChosen}</p>
-                <p>{cityChosen}</p>
+                <p>{countryProp}</p>
             </div>
+            <DateSelector
+            city={cityProp}
+            country={countryProp}
+            showDatePicker={showDatePicker}
+            setShowDatePicker={setShowDatePicker}
+            startDate={startDate}
+            setStartDate={setStartDate}
+            endDate={endDate}
+            setEndDate={setEndDate}
+            />
         </div>
     );
 };
