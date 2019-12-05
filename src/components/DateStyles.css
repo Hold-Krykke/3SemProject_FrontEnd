@@ -13,7 +13,7 @@
 
 .modal-header {
     position: absolute;
-    top: -40px;
+    top: -60px;
     background-color: transparent;
     border: none;
     padding: 0;
@@ -25,6 +25,20 @@
     font-weight: 600;
     color: #fff;
     margin: 0;
+}
+
+.modal-body {
+    position: absolute;
+    top: -35px;
+    width: max-content;
+    color: #fff;
+    padding: 0;
+    margin: 0;
+}
+
+.modal-body h4 {
+    margin: 0;
+    font-weight: bold;
 }
 
 .card-deck {
