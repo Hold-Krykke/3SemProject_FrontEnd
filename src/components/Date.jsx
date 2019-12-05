@@ -59,8 +59,8 @@ const MyModal = ({
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
-        <h1>Select Date</h1>
+      <Modal.Header>
+        <h1 className="modalHeader">Select Date</h1>
       </Modal.Header>
       <DateSelectorContent
         startDate={startDate}
@@ -88,10 +88,9 @@ const DateSelectorContent = ({
       <CardDeck>
         <Card border="light">
           <Card.Body>
-            <Card.Title>Select Start Date</Card.Title>
+            {/* <Card.Title>Select Start Date</Card.Title> */}
             <Card.Text>
-              {startDate.toString()}
-              <MyStartDateSelector
+              <MyDateSelector
                 startDate={startDate}
                 setStartDate={setStartDate}
                 endDate={endDate}
@@ -100,64 +99,19 @@ const DateSelectorContent = ({
             </Card.Text>
           </Card.Body>
         </Card>
-        <Card border="light">
-          <Card.Body>
-            <Card.Title>Select End Date</Card.Title>
-            <Card.Text>
-              {endDate.toString()}
-              <MyEndDateSelector
-                startDate={startDate}
-                setEndDate={setEndDate}
-                endDate={endDate}
-                setWarning={setWarning}
-              />
-            </Card.Text>
-          </Card.Body>
-        </Card>
       </CardDeck>
-      <br />
+      {/*<br />
       <NextButton warning={warning} />
       <br />
-      {/* <BackButton /> It is now a modal, so you just click outside the modal and it is effectively back. */}
+      <BackButton /> It is now a modal, so you just click outside the modal and it is effectively back. */}
     </>
   );
 };
 
 /**
- * End Date Selector
+ * Date Selector
  */
-const MyEndDateSelector = ({ startDate, setEndDate, endDate, setWarning }) => {
-  return (
-    <>
-      <DatePicker
-        selected={endDate}
-        onChange={date => {
-          setEndDate(date);
-          if (startDate > date) {
-            setWarning(warningText);
-          } else {
-            setWarning("");
-          }
-        }}
-        inline
-        showWeekNumbers
-        showMonthDropdown
-        showYearDropdown
-        selectsEnd
-        dropdownMode="select"
-        endDate={endDate}
-        minDate={startDate}
-        dateFormat={myDateFormat}
-        todayButton={todayButtonText}
-      />
-    </>
-  );
-};
-
-/**
- * Start Date Selector
- */
-const MyStartDateSelector = ({
+const MyDateSelector = ({
   startDate,
   setStartDate,
   endDate,
@@ -176,16 +130,12 @@ const MyStartDateSelector = ({
           }
         }}
         inline
-        showWeekNumbers
-        showMonthDropdown
-        showYearDropdown
         selectsStart
         dropdownMode="select"
         minDate={new Date()}
         startDate={startDate}
         endDate={endDate}
         dateFormat={myDateFormat}
-        todayButton={todayButtonText}
       />
     </>
   );
