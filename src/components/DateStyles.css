@@ -7,13 +7,16 @@
     background-color: transparent!important;
     border: none;
     border-radius: 0;
-    width: 100%;
-    /* max-width: 334px; */
+    width: 330px;
+    margin: 0 auto;
 }
 
 .modal-header {
+    position: absolute;
+    top: -40px;
     background-color: transparent;
     border: none;
+    padding: 0;
 }
 
 .modalHeader {
@@ -21,6 +24,7 @@
     line-height: 24px;
     font-weight: 600;
     color: #fff;
+    margin: 0;
 }
 
 .card-deck {
