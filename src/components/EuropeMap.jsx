@@ -78,7 +78,6 @@ const EuropeMap = ({
             </div>
             <div id="outputCountry">
                 <p>{countryProp}</p>
-                <p>{cityProp}</p>
             </div>
             <DateSelector
             city={cityProp}
