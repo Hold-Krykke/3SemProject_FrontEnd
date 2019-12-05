@@ -24,8 +24,22 @@ function apiFacade() {
 		return fetch(eventURL + payload).then(handleHttpErrors);
 	};
 
-	const getWeather = (city, year, month, day) => {
-		const payload = `city/${city}/${year}/${month}/${day}`;
+	const getWeather = (city, startDate, endDate) => {
+		startDate = parseDate(startDate);
+		endDate = parseDate(endDate);
+		let payload;
+		if (startDate === endDate) {
+			//Dates are equal and we only need to look at one of them, and the specific endpoint
+			//get weather for the whole day
+			let dateArray = startDate.split('-'); //yyyy-mm-dd format, so [0] is year, and so on
+			let year = dateArray[0];
+			let month = dateArray[1];
+			let day = dateArray[2];
+			payload = `city/${city}/${year}/${month}/${day}`;
+		} else {
+			//Dates are not equal and we get weather for the next 5 days (to get a gist. We have limited weather data)
+			payload = `city/${city}/`;
+		}
 		return fetch(weatherURL + payload).then(handleHttpErrors);
 	};
 
