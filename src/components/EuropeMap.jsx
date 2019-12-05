@@ -81,6 +81,8 @@ const EuropeMap = ({
                 <p>{cityProp}</p>
             </div>
             <DateSelector
+            city={cityProp}
+            country={countryProp}
             showDatePicker={showDatePicker}
             setShowDatePicker={setShowDatePicker}
             startDate={startDate}
