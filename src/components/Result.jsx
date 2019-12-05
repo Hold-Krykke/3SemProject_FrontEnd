@@ -5,59 +5,46 @@ import parseDate from '../utilities';
 
 const Result = ({startDate, endDate, country, city}) => {
 	const [eventData, setEventData] = useState();
-	const [userMessage, setUserMessage] = useState('');
+	const [userMessage, setUserMessage] = useState();
 	const [weatherData, setWeatherData] = useState();
 
 	//For events
 	useEffect(() => {
-		setUserMessage('Loading Events...');
+		setUserMessage('Loading data...');
 		Facade.getEvents(startDate, endDate, country, city)
 			.then(fetchData => {
 				//console.log('fetchData:', fetchData);
 				setEventData(fetchData);
-				setUserMessage('');
+				setUserMessage();
 			})
 			.catch(err => {
 				console.log(err);
 				if (err.status) {
 					err.fullError.then(err => {
 						if (err.message) {
-							setUserMessage({
+							setUserMessage(userMessage => ({
 								...userMessage,
 								...(
 									//backend error
-									<>
+									<span>
 										We had trouble loading event data:
 										<br />
 										{err.message}
 										<br />
-									</>
+									</span>
 								)
-							});
-						} else {
-							console.log('Network error #1');
-							setUserMessage({
-								...userMessage,
-								...(
-									//uncaught api error or bug
-									<>
-										We had trouble loading event data:
-										<br />
-										Network Error.(Error code #1)
-									</>
-								)
-							});
+							}));
 						}
 					});
 				} else {
-					console.log('Network error #2');
-					setUserMessage([
-						...userMessage,
-						<>
+					console.log('Network error #1');
+					setUserMessage(userMessage => [
+						{...userMessage},
+						<span>
 							We had trouble loading event data:
 							<br />
-							Network Error.(Error code #2)
-						</>
+							Network Error.(Error code #1)
+						</span>
 					]);
 				}
 			});
@@ -69,44 +56,30 @@ const Result = ({startDate, endDate, country, city}) => {
 			.then(fetchData => {
 				setWeatherData(fetchData);
 			})
-			.catch(async err => {
+			.catch(err => {
 				console.log(err);
 				if (err.status) {
 					err.fullError.then(err => {
 						if (err.message) {
-							setUserMessage({
-								...userMessage,
-								...(
-									//backend error
-									<>
-										We had trouble loading weather data:
-										<br />
-										{err.message}
-									</>
-								)
-							});
-						} else {
-							console.log('Network error #3');
-							setUserMessage([
-								...userMessage,
-								//uncaught api error or bug
-								<>
+							setUserMessage(userMessage => [
+								{...userMessage},
+								<span>
 									We had trouble loading weather data:
 									<br />
-									Network Error.(Error code #3)
-								</>
+									{err.message}
+								</span>
 							]);
 						}
 					});
 				} else {
-					console.log('Network error #4');
-					setUserMessage([
-						...userMessage,
-						<>
+					console.log('Network error #2');
+					setUserMessage(userMessage => [
+						{...userMessage},
+						<span>
 							We had trouble loading weather data:
 							<br />
-							Network Error.(Error code #4)
-						</>
+							Network Error.(Error code #2)
+						</span>
 					]);
 				}
 			});
@@ -114,7 +87,7 @@ const Result = ({startDate, endDate, country, city}) => {
 
 	return (
 		<>
-			{userMessage}
+			{<div>{userMessage}</div>}
 			<Modal.Dialog centered>
 				<Modal.Body>
 					<p>Start Date = {parseDate(startDate)}</p>
