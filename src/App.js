@@ -4,8 +4,7 @@ import "./App.css";
 import Europe from "./components/EuropeMap.jsx";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
-import City from "./components/City.jsx";
-// import DateSelector from "./components/Date.jsx";
+import City from "./components/City.jsx"; //Should be removed?
 import Result from "./components/Result.jsx";
 import About from "./components/About.jsx";
 
@@ -26,15 +25,7 @@ function App() {
             <Header />
             <Router>
                 <Switch>
-                    <Route path="/city" component={City} />
-                    {/* <Route path="/date">
-                        <DateSelector
-                            startDate={startDate}
-                            setStartDate={setStartDate}
-                            endDate={endDate}
-                            setEndDate={setEndDate}
-                        />
-                    </Route> */}
+                    <Route path="/city" component={City} /> {/*Should be removed?*/}
                     <Route path="/result">
                         <Result
                             endDate={endDate}

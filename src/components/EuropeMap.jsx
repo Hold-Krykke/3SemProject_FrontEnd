@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 import "../App.css";
 import MapViewer from "./MapViewer";
 import DateSelector from "./Date.jsx";
@@ -7,7 +6,7 @@ import DateSelector from "./Date.jsx";
 
 /**	
  * Parent component, controls state for city and country 
- * The names can be confusing so all props have "Prop" added to their names
+ * The names can be confusing so some of the props have "Prop" added to their names
  */
 const EuropeMap = ({ 
     countryProp, 

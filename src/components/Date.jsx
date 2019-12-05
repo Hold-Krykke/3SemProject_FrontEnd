@@ -4,7 +4,6 @@ import "react-datepicker/dist/react-datepicker.css"; // Required for Date Picker
 import "react-datepicker/dist/react-datepicker-cssmodules.css"; // Required for Date Picker to work.
 import { Modal, CardDeck, Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from 'react-router-dom';
 
 // Text or Formats used multiple places throughout code.
 const myDateFormat = "yyyy/MM/dd";
