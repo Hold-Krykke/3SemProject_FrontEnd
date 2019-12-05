@@ -177,13 +177,6 @@ const MyStartDateSelector = ({
     <>
       <DatePicker
         selected={startDate}
-        /**
-         * This onChange method only runs when the date picker component is renderen (of course)
-         * This means that a user can pick a bad date, re-render the component and confirm the bad date 
-         * since the date check only runs on change (when the user clicks another date) and the date 
-         * the user chose last is saved even if the date picker is re-rendered
-         * To fix this: Reset date every time the date picker is re-rendered
-         */
         onChange={date => {
           setStartDate(date);
           if (endDate < date) {
