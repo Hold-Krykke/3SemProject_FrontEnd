@@ -38,6 +38,8 @@ const EuropeMap = ({
         setCityProp(city);
         setClearCities(true);
         setShowDatePicker(true);
+        setStartDate(new Date());
+        setEndDate(new Date());
     };
 
     function handleCityView(clear){
