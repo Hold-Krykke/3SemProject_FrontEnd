@@ -1,11 +1,17 @@
 .result {
-    background-color: #2d3763;
+
+}
+
+.result .modal-dialog-centered {
+    align-items: flex-start;
+    margin-top: 10vh;
 }
 
 .result .modal-dialog{
     background-color: transparent;
     width: 100%;
     max-width: 710px;
+    margin: 0 auto;
 }
 
 .result .modal-content {
@@ -66,7 +72,101 @@
     padding: 2rem 1rem;
     border-radius: 0 0 12px 12px;
     background-color: #fff;
+    color: #000;
 }
+
+/* events */
+
+.result .event__item, .result .weather__item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px dashed #c1c1c1;
+    padding: 12px 12px 0;
+}
+
+.result .event__item:last-child, 
+.result .weather__item:last-child {
+    border-bottom: none;
+}
+
+.result .event__item .item__left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    max-width: 450px;
+}
+
+.result .event__item .item__name {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.result .event__item .item__date {
+    display: flex;
+}
+
+.result .event__item .item__date p{
+    margin-left: 8px;
+}
+
+.result .event__item .item__right-side {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    max-width: 140px;
+}
+
+.result .event__item .item__location {
+    display: flex;
+
+}
+
+.result .event__item .location__text {
+    max-width: 112px;
+    margin-left: 8px;
+    text-align: right;
+}
+
+/* weather */
+
+.result .weather__item .item__left-side, .result .weather__item .item__right-side{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.result .weather__item .item__left-side {
+    align-items: flex-start;
+}
+
+.result .weather__item .item__left-side .item__temp {
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: 600;
+    color: #0A1F7E;
+}
+
+.result .weather__item .item__right-side {
+    align-items: flex-end;
+}
+
+.result .weather__item .item__status {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.result .weather__item .weather__icon{
+    margin-left: 8px;
+}
+
+
+
+
+
 
 .result .modal-footer {
     border: none;
