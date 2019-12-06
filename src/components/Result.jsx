@@ -136,7 +136,7 @@ const Events = ({data}) => {
 				<Card border="light">
 					<Card.Body>
 						{/* <Card.Title>Event info</Card.Title> */}
-						<Card.Text>
+						<div className="card-text">
 							{data.map(
 								({
 									eventAddress,
@@ -145,8 +145,8 @@ const Events = ({data}) => {
 									eventURL,
 									latitude,
 									longitude
-								}) => (
-									<div className="event__item">
+								}, i) => (
+									<div key={i} className="event__item">
 										<div className="item__left-side">
 											<h4 className="item__name">{eventName}</h4>
 											<div className="item__date">
@@ -161,7 +161,7 @@ const Events = ({data}) => {
 									</div>
 								)
 							)}
-						</Card.Text>
+						</div>
 					</Card.Body>
 				</Card>
 			</>
@@ -181,7 +181,7 @@ const Weather = ({data, startDate, endDate}) => {
 			<>
 				<Card border="light">
 					<Card.Body>
-						<Card.Text>
+						<div className="card-text">
 							{data.map(
 								({
 									dateTime,
@@ -193,8 +193,8 @@ const Weather = ({data, startDate, endDate}) => {
 									weatherStatus,
 									windDirection,
 									windSpeed
-								}) => (
-									<div className="weather__item">
+								}, i) => (
+									<div key={i} className="weather__item">
 
 										<div className="item__left-side">
 											<p className="item__time">{dateTime}</p>
@@ -212,7 +212,7 @@ const Weather = ({data, startDate, endDate}) => {
 									</div>
 								)
 							)}
-						</Card.Text>
+						</div>
 					</Card.Body>
 				</Card>
 			</>

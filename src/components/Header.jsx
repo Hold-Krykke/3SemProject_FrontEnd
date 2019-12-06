@@ -80,7 +80,7 @@ const Header = () => {
               Result
             </p> */}
           </Route>
-          <Route exact="true" path="*">
+          <Route exact={true} path="*">
             <nav className="nav header__nav">
               <ul>
 
