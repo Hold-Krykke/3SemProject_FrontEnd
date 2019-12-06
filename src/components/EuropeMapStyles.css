@@ -6,13 +6,15 @@
 .cityButton {
     text-transform: uppercase;
     color: #fff;
-    padding: 0 10px;
+    padding: 0 20px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 20px;
     line-height: 40px;
     border: none;
-    font-size: 18px;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%) 0 0 no-repeat;
+    font-size: 16px;
+    font-weight: 600;
+    background: rgb(96,120,234);
+    background: linear-gradient(90deg, rgba(96,120,234,1) 0%, rgba(29,223,218,1) 100%);
     border: none;
 }
 
@@ -33,8 +35,8 @@
     left: -5px;
     background: none;
     color: transparent;
-    border-radius: 15px;
-    border: 5px solid rgba(255, 255, 255, 0.75);
+    border-radius: 30px;
+    border: 5px solid rgba(255, 255, 255, 0.5);
 }
 
 #outputCountry {
