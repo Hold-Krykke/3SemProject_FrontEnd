@@ -1,0 +1,73 @@
+.result {
+    background-color: #2d3763;
+}
+
+.result .modal-dialog{
+    background-color: transparent;
+    width: 100%;
+    max-width: 710px;
+}
+
+.result .modal-content {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.result .modal-body{
+    background-color: transparent;
+    width: 100%;
+    max-width: 710px;
+    padding: 0;
+}
+
+.result .country-data-info{
+   display: flex;
+}
+
+.result .country-data-info p{
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.result .nav-tabs {
+    border-bottom: none;
+}
+
+.result .nav .nav-link{
+    width: 50%;
+    border-radius: 0;
+    border: none;
+    background-color: #EBF7FB;
+    border-radius: 12px 0 0 0;
+    font-size: 22px;
+    line-height: 24px;
+    font-weight: 600;
+    color: #000;
+    padding: 22px 0 16px;
+}
+
+.result .nav .nav-link.active{
+    color: #fff;
+    background: rgb(96,120,234);
+    background: linear-gradient(90deg, rgba(96,120,234,1) 0%, rgba(29,223,218,1) 100%);
+}
+
+.result .nav .nav-link:last-child{
+    border-radius: 0 12px 0 0;
+}
+
+.result .tab-content {
+    padding: 2rem 1rem;
+    border-radius: 0 0 12px 12px;
+    background-color: #fff;
+}
+
+.result .modal-footer {
+    border: none;
+}

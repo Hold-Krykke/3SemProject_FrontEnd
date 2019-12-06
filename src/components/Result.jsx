@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Tab, Tabs, Modal, Button, Card, Badge} from 'react-bootstrap';
 import Facade from '../apiFacade';
 import parseDate from '../utilities';
+import styles from './ResultStyles.css'
 
 const Result = ({startDate, endDate, country, city, setClearCities}) => {
 	const [eventData, setEventData] = useState();
@@ -65,19 +66,21 @@ const Result = ({startDate, endDate, country, city, setClearCities}) => {
 	}, []);
 
 	return (
-		<>
+		<div className="result">
 			{userMessage}
 			<Modal.Dialog centered>
 				<Modal.Body>
-					<p>Start Date = {parseDate(startDate)}</p>
-					<p>End Date = {parseDate(endDate)}</p>
-					<p>Country = {country}</p>
-					<p>City = {city}</p>
+					<div className="country-data-info">
+						<p>Country = {country}</p>
+						<p>City = {city}</p>
+						<p>Start Date = {parseDate(startDate)}</p>
+						<p>End Date = {parseDate(endDate)}</p>
+					</div>
 					<ControlledTabs
 						eventData={eventData}
-            weatherData={weatherData}
-            startDate={startDate}
-            endDate={endDate}
+						weatherData={weatherData}
+						startDate={startDate}
+						endDate={endDate}
 					/>
 				</Modal.Body>
 				<Modal.Footer>
@@ -86,7 +89,7 @@ const Result = ({startDate, endDate, country, city, setClearCities}) => {
 					</Button>
 				</Modal.Footer>
 			</Modal.Dialog>
-		</>
+		</div>
 	);
 };
 
