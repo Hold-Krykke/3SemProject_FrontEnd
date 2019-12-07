@@ -8,18 +8,18 @@ import DateSelector from "./Date.jsx";
  * Parent component, controls state for city and country 
  * The names can be confusing so some of the props have "Prop" added to their names
  */
-const EuropeMap = ({ 
-    countryProp, 
-    setCountryProp, 
-    cityProp, 
-    setCityProp, 
-    clearCities, 
+const EuropeMap = ({
+    countryProp,
+    setCountryProp,
+    cityProp,
+    setCityProp,
+    clearCities,
     setClearCities,
     startDate,
     setStartDate,
     endDate,
     setEndDate
-    }) => {
+}) => {
 
     const initialState = [{
         cityName: '',
@@ -42,7 +42,7 @@ const EuropeMap = ({
         setEndDate(new Date());
     };
 
-    function handleCityView(clear){
+    function handleCityView(clear) {
         if (clear) {
             setChosenCountryWithCities([]);
             setCountryProp("");
@@ -79,14 +79,14 @@ const EuropeMap = ({
                 <p>{countryProp}</p>
             </div>
             <DateSelector
-            city={cityProp}
-            country={countryProp}
-            showDatePicker={showDatePicker}
-            setShowDatePicker={setShowDatePicker}
-            startDate={startDate}
-            setStartDate={setStartDate}
-            endDate={endDate}
-            setEndDate={setEndDate}
+                city={cityProp}
+                country={countryProp}
+                showDatePicker={showDatePicker}
+                setShowDatePicker={setShowDatePicker}
+                startDate={startDate}
+                setStartDate={setStartDate}
+                endDate={endDate}
+                setEndDate={setEndDate}
             />
         </div>
     );
@@ -168,27 +168,27 @@ function hardcodedCountryList() {
                     [
                         {
                             "cityName": "Stockholm",
-                            "x": "495",
+                            "x": "505",
                             "y": "470"
                         },
                         {
                             "cityName": "Göteborg",
-                            "x": "270",
+                            "x": "255",
                             "y": "540"
                         },
                         {
                             "cityName": "Malmö",
                             "x": "330",
-                            "y": "650"
+                            "y": "640"
                         },
                         {
                             "cityName": "Uppsala",
                             "x": "448",
-                            "y": "415"
+                            "y": "405"
                         },
                         {
                             "cityName": "Västerås",
-                            "x": "390",
+                            "x": "385",
                             "y": "455"
                         }
                     ]
@@ -259,8 +259,8 @@ function hardcodedCountryList() {
                     [
                         {
                             "cityName": "Reykjavík",
-                            "x": "180",
-                            "y": "420"
+                            "x": "175",
+                            "y": "415"
                         },
                         {
                             "cityName": "Akureyri",
@@ -269,8 +269,8 @@ function hardcodedCountryList() {
                         },
                         {
                             "cityName": "Selfoss",
-                            "x": "270",
-                            "y": "455"
+                            "x": "275",
+                            "y": "460"
                         }
                     ]
             },
@@ -411,8 +411,8 @@ function hardcodedCountryList() {
                     [
                         {
                             "cityName": "Lisbon",
-                            "x": "320",
-                            "y": "420"
+                            "x": "315",
+                            "y": "415"
                         },
                         {
                             "cityName": "Porto",
@@ -427,7 +427,7 @@ function hardcodedCountryList() {
                         {
                             "cityName": "Setúbal",
                             "x": "340",
-                            "y": "460"
+                            "y": "470"
                         },
                         {
                             "cityName": "Coimbra",
@@ -481,7 +481,7 @@ function hardcodedCountryList() {
                         {
                             "cityName": "Esch-sur-Alzette",
                             "x": "335",
-                            "y": "640"
+                            "y": "620"
                         },
                         {
                             "cityName": "Ettelbruck",
@@ -524,13 +524,13 @@ function hardcodedCountryList() {
                         },
                         {
                             "cityName": "Genève",
-                            "x": "10",
-                            "y": "485"
+                            "x": "5",
+                            "y": "475"
                         },
                         {
                             "cityName": "Basel",
                             "x": "325",
-                            "y": "115"
+                            "y": "125"
                         },
                         {
                             "cityName": "Bern",
@@ -540,7 +540,7 @@ function hardcodedCountryList() {
                         {
                             "cityName": "Lausanne",
                             "x": "95",
-                            "y": "420"
+                            "y": "410"
                         }
                     ]
             },
@@ -588,8 +588,8 @@ function hardcodedCountryList() {
                         },
                         {
                             "cityName": "Milan",
-                            "x": "275",
-                            "y": "85"
+                            "x": "285",
+                            "y": "80"
                         },
                         {
                             "cityName": "Naples",
@@ -598,8 +598,8 @@ function hardcodedCountryList() {
                         },
                         {
                             "cityName": "Turin",
-                            "x": "205",
-                            "y": "110"
+                            "x": "200",
+                            "y": "115"
                         },
                         {
                             "cityName": "Palermo",
@@ -787,13 +787,13 @@ function hardcodedCountryList() {
                     [
                         {
                             "cityName": "Tirana",
-                            "x": "400",
-                            "y": "275"
+                            "x": "415",
+                            "y": "270"
                         },
                         {
                             "cityName": "Durrës",
-                            "x": "320",
-                            "y": "280"
+                            "x": "310",
+                            "y": "285"
                         },
                         {
                             "cityName": "Elbasan",
@@ -1067,8 +1067,8 @@ function hardcodedCountryList() {
                     [
                         {
                             "cityName": "Riga",
-                            "x": "395",
-                            "y": "295"
+                            "x": "405",
+                            "y": "280"
                         },
                         {
                             "cityName": "Daugavpils",
@@ -1078,11 +1078,11 @@ function hardcodedCountryList() {
                         {
                             "cityName": "Jelgava",
                             "x": "345",
-                            "y": "350"
+                            "y": "360"
                         },
                         {
                             "cityName": "Jūrmala",
-                            "x": "305",
+                            "x": "295",
                             "y": "305"
                         }
                     ]
@@ -1104,7 +1104,7 @@ function hardcodedCountryList() {
                         },
                         {
                             "cityName": "Narva",
-                            "x": "955",
+                            "x": "915",
                             "y": "155"
                         },
                         {
