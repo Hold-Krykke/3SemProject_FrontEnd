@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, ListGroup, CardGroup, Container, Row } from "react-bootstrap";
-import styles from './AboutStyles.css'
+import styles from './AboutStyles.css';
+import { GithubIcon } from './Icons';
 
 const About = () => {
     return (
@@ -9,7 +10,7 @@ const About = () => {
             <Container className='mt-5 mb-5 aboutBorder'>
                 <Row className="justify-content-md-center">
                     <CardGroup className='w-75'>
-                        <Card>
+                        <Card className="mr-2">
                             <Card.Body>
                                 <div className="aboutHeader">
                                     <Card.Title>ABOUT</Card.Title>
@@ -17,16 +18,15 @@ const About = () => {
                                         A.P. Computer Science 3. semester exam project, created by Hold Krykke
                                 </Card.Text>
                                 </div>
-                                <ListGroup variant="flush">
-                                    <ListGroup.Item><a href="http://github.com/Runi-VN">rn118 - Rúni Vedel Niclassen</a></ListGroup.Item>
-                                    <ListGroup.Item><a href="http://github.com/MalteMagnussen">mh748 - Malte Hviid-Magnussen</a></ListGroup.Item>
-                                    <ListGroup.Item><a href="http://github.com/HrBjarup">ab363 - Asger Koch Bjarup</a></ListGroup.Item>
-                                    <ListGroup.Item><a href="http://github.com/Castau">cs340 - Camilla Jenny Valerius Staunstrup</a></ListGroup.Item>
+                                <ListGroup className="about_link_github" variant="flush">
+                                    <ListGroup.Item><a href="http://github.com/Runi-VN"><GithubIcon /><span className="ml-2">Rúni Vedel Niclassen</span></a></ListGroup.Item>
+                                    <ListGroup.Item><a href="http://github.com/MalteMagnussen"><GithubIcon /><span className="ml-2">Malte Hviid-Magnussen</span></a></ListGroup.Item>
+                                    <ListGroup.Item><a href="http://github.com/HrBjarup"><GithubIcon /><span className="ml-2">Asger Koch Bjarup</span></a></ListGroup.Item>
+                                    <ListGroup.Item><a href="http://github.com/Castau"><GithubIcon /><span className="ml-2">Camilla Jenny Valerius Staunstrup</span></a></ListGroup.Item>
                                 </ListGroup>
                             </Card.Body>
                         </Card>
-
-                        <Card>
+                        <Card className="ml-2">
                             <Card.Body>
                                 <div className="aboutHeader">
                                     <Card.Title>SPECIAL THANKS TO</Card.Title>
@@ -34,7 +34,7 @@ const About = () => {
                                         The resources and API's used in this project. Thank you for creating resources free of charge.
                                 </Card.Text>
                                 </div>
-                                <ListGroup variant="flush">
+                                <ListGroup className="about_link" variant="flush">
                                     <ListGroup.Item><a href="http://restcountries.eu/">REST Countries</a></ListGroup.Item>
                                     <ListGroup.Item><a href="http://www.geonames.org/">GeoNames</a></ListGroup.Item>
                                     <ListGroup.Item><a href="https://developer.ticketmaster.com/">Ticketmaster API</a></ListGroup.Item>
