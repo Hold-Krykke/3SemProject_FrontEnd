@@ -8,67 +8,88 @@ import { DateIcon, LocationIcon } from './Icons'
 const Result = ({ startDate, endDate, country, city, setClearCities }) => {
     const [eventData, setEventData] = useState();
     const [weatherData, setWeatherData] = useState();
-    const [userMessage, setUserMessage] = useState('Loading Events...');
+    const [userMessage, setUserMessage] = useState();
 
     //For events
     useEffect(() => {
+        setUserMessage('Loading data...');
         Facade.getEvents(startDate, endDate, country, city)
             .then(fetchData => {
                 //console.log('fetchData:', fetchData);
                 setEventData(fetchData);
-                setUserMessage('');
+                setUserMessage();
             })
             .catch(err => {
+                console.log(err);
                 if (err.status) {
                     err.fullError.then(err => {
-                        console.log(err);
-                        if (err.message == 'No events for this City exists') {
-                            setUserMessage('No events for given city and date found'); //backend error
-                        } else {
-                            setUserMessage('Network Error.'); //uncaught api error or bug
+                        if (err.message) {
+                            setUserMessage(userMessage => ({
+                                ...userMessage,
+                                ...(
+                                    //backend error
+                                    <span>
+                                        We had trouble loading event data:
+										<br />
+                                        {err.message}
+                                        <br />
+                                    </span>
+                                )
+                            }));
                         }
                     });
                 } else {
-                    console.log('Network error');
-                    setUserMessage('Network Error.');
+                    console.log('Network error #1');
+                    setUserMessage(userMessage => [
+                        { ...userMessage },
+                        <span>
+                            We had trouble loading event data:
+							<br />
+                            Network Error.(Error code #1)
+						</span>
+                    ]);
                 }
             });
     }, []);
 
     //For weather
     useEffect(() => {
-
         Facade.getWeather(city, startDate, endDate)
             .then(fetchData => {
                 setWeatherData(fetchData);
-                //always returns array with 1 field
-                // else //need some error handling, as there are cases that return an empty array. (?)
-                // 	setWeatherData([
-                // 		...weatherData,
-                // 		{noData: `No data available for${element.eventData}`}
-                // 	]);
             })
             .catch(err => {
                 console.log(err);
                 if (err.status) {
                     err.fullError.then(err => {
-                        console.log(err);
-                        if (err.message == 'No events for this City exists') {
-                            setUserMessage('No events for given city and date found'); //HERE it should be 'some dates didn't return weather data' && check on all possible err.messages
-                        } else {
-                            setUserMessage('Network Error. (Error code #1)'); //uncaught api error or bug
+                        if (err.message) {
+                            setUserMessage(userMessage => [
+                                { ...userMessage },
+                                <span>
+                                    We had trouble loading weather data:
+									<br />
+                                    {err.message}
+                                </span>
+                            ]);
                         }
                     });
                 } else {
-                    console.log('Network error');
-                    setUserMessage('Network Error. (Error code #2)');
+                    console.log('Network error #2');
+                    setUserMessage(userMessage => [
+                        { ...userMessage },
+                        <span>
+                            We had trouble loading weather data:
+							<br />
+                            Network Error.(Error code #2)
+						</span>
+                    ]);
                 }
             });
     }, []);
 
     return (
         <div className="result">
-            {userMessage}
+            {<div>{userMessage}</div>}
             <Modal.Dialog centered>
                 <Modal.Body>
                     <div className="country-data-info">
@@ -95,12 +116,7 @@ const Result = ({ startDate, endDate, country, city, setClearCities }) => {
     );
 };
 
-const ControlledTabs = ({
-    eventData,
-    weatherData,
-    startDate,
-    endDate
-}) => {
+const ControlledTabs = ({ eventData, weatherData, startDate, endDate }) => {
     const [key, setKey] = useState('events');
     let listSize = 0;
     if (eventData) listSize = Object.keys(eventData).length;
@@ -173,7 +189,10 @@ const Events = ({ data }) => {
 
 const Weather = ({ data, startDate, endDate }) => {
     //console.log('WeatherDataInWeatherComponent: ', data);
-    const weatherHeader = JSON.stringify(startDate) != JSON.stringify(endDate) ? "Weather info for the next 5 days" : "Weather for the chosen day";
+    const weatherHeader =
+        JSON.stringify(startDate) != JSON.stringify(endDate)
+            ? 'Weather info for the next 5 days'
+            : 'Weather for the chosen day';
     if (!data) {
         return <p>No weather info available for this selection.</p>;
     } else if (data.length > 0) {
