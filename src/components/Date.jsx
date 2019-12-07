@@ -79,7 +79,12 @@ const MyModal = ({
                 endDate={endDate}
                 setEndDate={setEndDate}
             />
-            <button className="dateButton" onClick={() => { window.location = '#/result' }}>See Events</button>
+            <button className="dateButton" onClick={() => {
+                if (endDate === undefined) {
+                    setEndDate(startDate);
+                }
+                window.location = '#/result'
+            }}>See Events</button>
         </Modal>
     );
 };

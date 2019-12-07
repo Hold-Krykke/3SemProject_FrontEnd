@@ -59,6 +59,18 @@
     font-weight: 600;
     margin-bottom: 10px;
 }
+.column__list-item_right {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+    text-align: right;
+    
+}
+
+.column__list-item_right a {
+    color: #fff;
+    text-decoration: none;
+}
 
 .column__list-item a {
     color: #fff;
