@@ -1,0 +1,12 @@
+
+.aboutHeader{
+    color: #fff;
+    background: rgb(96,120,234);
+    background: linear-gradient(90deg, rgba(96,120,234,1) 0%, rgba(29,223,218,1) 100%);
+    min-height: 120px;
+    padding: 10px;
+}
+
+.aboutBorder *{
+    border: none;
+}

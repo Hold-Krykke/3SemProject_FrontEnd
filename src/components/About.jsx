@@ -1,19 +1,22 @@
 import React from "react";
 import { Card, ListGroup, CardGroup, Container, Row } from "react-bootstrap";
+import styles from './AboutStyles.css'
 
 const About = () => {
     return (
         <>
 
-            <Container className='mt-5 mb-5'>
+            <Container className='mt-5 mb-5 aboutBorder'>
                 <Row className="justify-content-md-center">
                     <CardGroup className='w-75'>
                         <Card>
                             <Card.Body>
-                                <Card.Title>ABOUT</Card.Title>
-                                <Card.Text>
-                                    A.P. Computer Science 3. semester exam project, created by Hold Krykke
+                                <div className="aboutHeader">
+                                    <Card.Title>ABOUT</Card.Title>
+                                    <Card.Text >
+                                        A.P. Computer Science 3. semester exam project, created by Hold Krykke
                                 </Card.Text>
+                                </div>
                                 <ListGroup variant="flush">
                                     <ListGroup.Item><a href="http://github.com/Runi-VN">rn118 - Rúni Vedel Niclassen</a></ListGroup.Item>
                                     <ListGroup.Item><a href="http://github.com/MalteMagnussen">mh748 - Malte Hviid-Magnussen</a></ListGroup.Item>
@@ -25,10 +28,12 @@ const About = () => {
 
                         <Card>
                             <Card.Body>
-                                <Card.Title>SPECIAL THANKS TO</Card.Title>
-                                <Card.Text>
-                                    The resources and API's used in this project. Thank you for creating resources free of charge.
+                                <div className="aboutHeader">
+                                    <Card.Title>SPECIAL THANKS TO</Card.Title>
+                                    <Card.Text>
+                                        The resources and API's used in this project. Thank you for creating resources free of charge.
                                 </Card.Text>
+                                </div>
                                 <ListGroup variant="flush">
                                     <ListGroup.Item><a href="http://restcountries.eu/">REST Countries</a></ListGroup.Item>
                                     <ListGroup.Item><a href="http://www.geonames.org/">GeoNames</a></ListGroup.Item>
