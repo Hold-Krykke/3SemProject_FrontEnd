@@ -1,6 +1,6 @@
 import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import { HeaderArrow } from './Icons';
+import { HeaderArrow, CrutchIcon } from './Icons';
 import styles from './HeaderStyles.css';
 
 const Header = () => {
@@ -38,7 +38,7 @@ const Header = () => {
                                 </li>
                             </ul>
                         </nav>
-                        <div className="header__logo"></div>
+                        <div className="ml-5"><CrutchIcon /></div>
                         {/* <p>
               <a href="#/">Click a Country</a> <HeaderArrow/>{" "}
               <a href="#/city">Click a City</a> <HeaderArrow/> Pick a Date <HeaderArrow/> Result
@@ -74,7 +74,7 @@ const Header = () => {
                                 </li>
                             </ul>
                         </nav>
-                        <div className="header__logo"></div>
+                        <div className="ml-5"><CrutchIcon /></div>
                         {/* <p>
               <a href="#/">Click a Country</a> <HeaderArrow/> Click a City <HeaderArrow/> Pick a Date <HeaderArrow/>
               Result
@@ -110,7 +110,7 @@ const Header = () => {
                                 </li>
                             </ul>
                         </nav>
-                        <div className="header__logo"></div>
+                        <div className="ml-5"><CrutchIcon /></div>
                         {/* <p>Click a Country <HeaderArrow/> Click a City <HeaderArrow/> Pick a Date <HeaderArrow/> Result</p> */}
                     </Route>
                 </Switch>
