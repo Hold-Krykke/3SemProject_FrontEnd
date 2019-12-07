@@ -94,19 +94,28 @@
     color: #000;
 }
 
+.result a {
+    color: #1D1D2A;
+    text-decoration: none;
+}
+
+.result a:hover {
+    color: #1D1D2A;
+    text-decoration: none;
+}
+
 /* events */
+
+.result .event__item:hover{
+    border: 1px dashed #c1c1c1;
+}
 
 .result .event__item, .result .weather__item {
     display: flex;
     justify-content: space-between;
-    border-bottom: 2px dashed #c1c1c1;
     padding: 12px 12px 0;
 }
 
-.result .event__item:last-child, 
-.result .weather__item:last-child {
-    border-bottom: none;
-}
 
 .result .event__item .item__left-side {
     display: flex;

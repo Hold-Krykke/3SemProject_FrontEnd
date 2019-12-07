@@ -161,19 +161,21 @@ const Events = ({ data }) => {
                                     latitude,
                                     longitude
                                 }, i) => (
-                                        <div key={i} className="event__item">
-                                            <div className="item__left-side">
-                                                <h4 className="item__name">{eventName}</h4>
-                                                <div className="item__date">
-                                                    <DateIcon />
-                                                    <p>{eventDate}</p>
+                                        <a href={eventURL}>
+                                            <div key={i} className="event__item">
+                                                <div className="item__left-side">
+                                                    <h4 className="item__name">{eventName}</h4>
+                                                    <div className="item__date">
+                                                        <DateIcon />
+                                                        <p>{eventDate}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div className="item__right-side">
+                                                    <div className="item__location"><LocationIcon /><p className="location__text">{eventAddress}</p></div>
                                                 </div>
                                             </div>
-
-                                            <div className="item__right-side">
-                                                <div className="item__location"><LocationIcon /><p className="location__text">{eventAddress}</p></div>
-                                            </div>
-                                        </div>
+                                        </a>
                                     )
                             )}
                         </div>
