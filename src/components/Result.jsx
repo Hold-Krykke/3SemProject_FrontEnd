@@ -15,7 +15,6 @@ const Result = ({ startDate, endDate, country, city, setClearCities }) => {
         setUserMessage('Loading data...');
         Facade.getEvents(startDate, endDate, country, city)
             .then(fetchData => {
-                //console.log('fetchData:', fetchData);
                 setEventData(fetchData);
                 setUserMessage();
             })
@@ -188,7 +187,6 @@ const Events = ({ data }) => {
 };
 
 const Weather = ({ data, startDate, endDate }) => {
-    //console.log('WeatherDataInWeatherComponent: ', data);
     const weatherHeader =
         JSON.stringify(startDate) != JSON.stringify(endDate)
             ? 'Weather info for the next 5 days'
