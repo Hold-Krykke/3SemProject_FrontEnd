@@ -43,6 +43,7 @@ const About = () => {
                                     <ListGroup.Item><a href="https://catfact.ninja/">CatFact API</a></ListGroup.Item>
                                     <ListGroup.Item><a href="http://www.icndb.com/about/">The Internet Chuck Norris Database</a></ListGroup.Item>
                                     <ListGroup.Item><a href="https://github.com/lukePeavey/quotable">Repository of lukePeavey </a></ListGroup.Item>
+                                    <ListGroup.Item><a href="https://fontawesome.com/icons/crutch?style=solid">Font Awesome Crutch Icon</a></ListGroup.Item>
                                 </ListGroup>
                             </Card.Body>
                         </Card>
