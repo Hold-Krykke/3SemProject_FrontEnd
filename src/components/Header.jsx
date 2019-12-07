@@ -85,7 +85,7 @@ const Header = () => {
                             <ul>
 
                                 <li className="nav__item">
-                                    <p className="item__text">Click a Country</p>
+                                    <a href="#/" className="item__text">Click a Country</a>
                                     <div className="item__arrow-container">
                                         <HeaderArrow />
                                     </div>
