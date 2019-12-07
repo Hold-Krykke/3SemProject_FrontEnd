@@ -12,8 +12,8 @@ function App() {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     // Date states end
-    const [city, setCity] = useState("Copenhagen"); 
-    const [country, setCountry] = useState("Denmark");
+    const [city, setCity] = useState("");
+    const [country, setCountry] = useState("");
 
     const [clearCities, setClearCities] = useState(false);
     return (
