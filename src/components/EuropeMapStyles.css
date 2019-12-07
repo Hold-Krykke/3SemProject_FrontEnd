@@ -18,6 +18,21 @@
     border: none;
 }
 
+.dateButton {
+    text-transform: uppercase;
+    color: #fff;
+    padding: 0 20px;
+    height: 40px;
+    border-radius: 20px;
+    line-height: 40px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    background: rgb(96,120,234);
+    background: linear-gradient(90deg, rgba(96,120,234,1) 0%, rgba(29,223,218,1) 100%);
+    border: none;
+}
+
 .cityButton:hover,
 .cityButton:active,
 .cityButton:focus {
