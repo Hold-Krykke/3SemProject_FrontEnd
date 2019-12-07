@@ -2,18 +2,19 @@ import React, {useEffect, useState} from 'react';
 import {Tab, Tabs, Modal, Button, Card, Badge} from 'react-bootstrap';
 import Facade from '../apiFacade';
 import parseDate from '../utilities';
+import styles from './ResultStyles.css';
+import {DateIcon, LocationIcon} from './Icons';
 
 const Result = ({startDate, endDate, country, city, setClearCities}) => {
 	const [eventData, setEventData] = useState();
-	const [userMessage, setUserMessage] = useState();
 	const [weatherData, setWeatherData] = useState();
+	const [userMessage, setUserMessage] = useState();
 
 	//For events
 	useEffect(() => {
 		setUserMessage('Loading data...');
 		Facade.getEvents(startDate, endDate, country, city)
 			.then(fetchData => {
-				//console.log('fetchData:', fetchData);
 				setEventData(fetchData);
 				setUserMessage();
 			})
@@ -86,14 +87,17 @@ const Result = ({startDate, endDate, country, city, setClearCities}) => {
 	}, []);
 
 	return (
-		<>
+		<div className="result">
 			{<div>{userMessage}</div>}
 			<Modal.Dialog centered>
 				<Modal.Body>
-					<p>Start Date = {parseDate(startDate)}</p>
-					<p>End Date = {parseDate(endDate)}</p>
-					<p>Country = {country}</p>
-					<p>City = {city}</p>
+					<div className="country-data-info">
+						<p>Events in&#160;</p>
+						<p>{city},&#160;</p>
+						<p>{country} on&#160;</p>
+						<p>{parseDate(startDate)}&#160;-&#160;</p>
+						<p>{parseDate(endDate)}</p>
+					</div>
 					<ControlledTabs
 						eventData={eventData}
 						weatherData={weatherData}
@@ -102,12 +106,17 @@ const Result = ({startDate, endDate, country, city, setClearCities}) => {
 					/>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="primary" onClick={() => {setClearCities(true); window.history.back()}}>
+					<Button
+						className="backButton"
+						onClick={() => {
+							setClearCities(true);
+							window.history.back();
+						}}>
 						Go back
 					</Button>
 				</Modal.Footer>
 			</Modal.Dialog>
-		</>
+		</div>
 	);
 };
 
@@ -146,37 +155,41 @@ const Events = ({data}) => {
 			<>
 				<Card border="light">
 					<Card.Body>
-						<Card.Title>Event info</Card.Title>
-						<Card.Text>
+						{/* <Card.Title>Event info</Card.Title> */}
+						<div className="card-text">
 							{data.map(
-								({
-									eventAddress,
-									eventDate,
-									eventName,
-									eventURL,
-									latitude,
-									longitude
-								}) => (
-									<>
-										<h3>event object data</h3>
-										<h4>{eventName}</h4>
-										<ul key={eventURL}>
-											<li>Event Address: {eventAddress}</li>
-											<li>Event Date: {eventDate}</li>
-											<li>
-												Event tickets:{' '}
-												<a
-													href={eventURL}
-													target="_blank"
-													rel="noopener noreferrer">
-													Purchase tickets
-												</a>
-											</li>
-										</ul>
-									</>
+								(
+									{
+										eventAddress,
+										eventDate,
+										eventName,
+										eventURL,
+										latitude,
+										longitude
+									},
+									i
+								) => (
+									<a href={eventURL} target="blank">
+										<div key={i} className="event__item">
+											<div className="item__left-side">
+												<h4 className="item__name">{eventName}</h4>
+												<div className="item__date">
+													<DateIcon />
+													<p>{eventDate}</p>
+												</div>
+											</div>
+
+											<div className="item__right-side">
+												<div className="item__location">
+													<LocationIcon />
+													<p className="location__text">{eventAddress}</p>
+												</div>
+											</div>
+										</div>
+									</a>
 								)
 							)}
-						</Card.Text>
+						</div>
 					</Card.Body>
 				</Card>
 			</>
@@ -187,7 +200,6 @@ const Events = ({data}) => {
 };
 
 const Weather = ({data, startDate, endDate}) => {
-	//console.log('WeatherDataInWeatherComponent: ', data);
 	const weatherHeader =
 		JSON.stringify(startDate) != JSON.stringify(endDate)
 			? 'Weather info for the next 5 days'
@@ -199,40 +211,42 @@ const Weather = ({data, startDate, endDate}) => {
 			<>
 				<Card border="light">
 					<Card.Body>
-						<Card.Title>{weatherHeader}</Card.Title>
-						<Card.Text>
+						<div className="card-text">
 							{data.map(
-								({
-									dateTime,
-									funnyAdvice,
-									humidity,
-									predictability,
-									temp,
-									weatherIcon,
-									weatherStatus,
-									windDirection,
-									windSpeed
-								}) => (
-									<>
-										<h3>weather object data</h3>
-										<ul>
-											<li>dateTime: {dateTime}</li>
-											<li>funnyAdvice: {funnyAdvice}</li>
-											<li>humidity: {humidity}</li>
-											<li>predictability: {predictability}</li>
-											<li>temp: {temp}</li>
-											<li>
-												weatherIcon:{' '}
-												<img src={weatherIcon} height="25" width="25"></img>
-											</li>
-											<li>weatherStatus: {weatherStatus}</li>
-											<li>windDirection: {windDirection}</li>
-											<li>windSpeed: {windSpeed}</li>
-										</ul>
-									</>
+								(
+									{
+										dateTime,
+										funnyAdvice,
+										humidity,
+										predictability,
+										temp,
+										weatherIcon,
+										weatherStatus,
+										windDirection,
+										windSpeed
+									},
+									i
+								) => (
+									<div key={i} className="weather__item">
+										<div className="item__left-side">
+											<p className="item__time">{dateTime}</p>
+											<p className="item__temp">{temp}&#8451;</p>
+										</div>
+
+										<div className="item__right-side">
+											<p>{funnyAdvice}</p>
+											<div className="item__status">
+												<p>{weatherStatus}</p>
+												<p className="weather__icon">
+													{' '}
+													<img src={weatherIcon} height="25" width="25"></img>
+												</p>
+											</div>
+										</div>
+									</div>
 								)
 							)}
-						</Card.Text>
+						</div>
 					</Card.Body>
 				</Card>
 			</>

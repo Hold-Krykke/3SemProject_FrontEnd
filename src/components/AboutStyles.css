@@ -1,0 +1,56 @@
+
+.aboutHeader{
+    color: #fff;
+    background: rgb(96,120,234);
+    background: linear-gradient(90deg, rgba(96,120,234,1) 0%, rgba(29,223,218,1) 100%);
+    min-height: 130px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.aboutBorder *{
+    border: none;
+}
+
+.about_link *{
+
+    color: #1D1D2A;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    text-align: left;
+    padding: 20px;
+    
+}
+
+.about_link:hover *{
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    text-align: left;
+    padding: 20px;
+    
+}
+
+.about_link_github *{
+
+    color: #1D1D2A;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.about_link_github *:hover{
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    text-align: left;
+}

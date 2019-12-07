@@ -1,28 +1,43 @@
-import React from "react";
+import React from 'react';
+import styles from './FooterStyles.css';
+import {GithubIcon} from './Icons';
 
 const Footer = () => {
-    // Contains zero styling - pure HTML (react)
-    return (
-        <>
-            {/* COLUMN ONE START */}
-            <h4>Hold Krykke</h4>
-            <p>[Insert Footer Paragraph here]</p>
-            {/* COLUMN TWO START */}
-            <ul>
-                <li>Click a Country</li>
-                <li>Click a City</li>
-                <li>Pick a Date</li>
-                <li>Result</li>
-            </ul>
-            {/* COLUMN THREE START */}
-            <a href="#/about">About & Credits</a>
-            <br />
-            [GitHub Logo] <a href="https://www.github.com/Hold-Krykke">Hold Krykke</a>
-            <br />
-            {/* AT THE BOTTOM BELOW COLUMNS */}
-            Copyright 2019. All Rights Reserved.
-    </>
-    );
+	function getYear() {
+		return new Date().getFullYear();
+	}
+
+	// Contains zero styling - pure HTML (react)
+	return (
+		<footer className="footer">
+			<div className="footer__content">
+				<div className="content__column content__column--left">
+					<h4 className="column__title">Hold Krykke</h4>
+					<p className="column__list-item">AP Computer Science</p>
+					<p className="column__list-item">3. Semester Exam Project</p>
+					<p className="column__list-item">CPH Business, Lyngby Denmark</p>
+				</div>
+				<div className="content__column content__column--right">
+					<ul className="column__list">
+						<li className="column__list-item_right mb-2">
+							<a href="#/about">About & Credits</a>
+						</li>
+						<li className="column__list-item">
+							<a
+								href="https://www.github.com/Hold-Krykke"
+								target="blank"
+								className="column__link">
+								<span className="mr-1">Project Repository</span> <GithubIcon />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<p className="footer__copyright">
+				Copyright {getYear()}. All Rights Reserved.
+			</p>
+		</footer>
+	);
 };
 
 export default Footer;

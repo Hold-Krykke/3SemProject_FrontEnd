@@ -1,0 +1,93 @@
+.europeMapContainer {
+    background-color:#BFE5E8;
+    padding: 3rem 0;
+}
+
+.cityButton {
+    text-transform: uppercase;
+    color: #fff;
+    padding: 0 20px;
+    height: 40px;
+    border-radius: 20px;
+    line-height: 40px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    background: rgb(96,120,234);
+    background: linear-gradient(90deg, rgba(96,120,234,1) 0%, rgba(29,223,218,1) 100%);
+    border: none;
+}
+
+.dateButton {
+    text-transform: uppercase;
+    color: #fff;
+    padding: 0 20px;
+    height: 40px;
+    border-radius: 20px;
+    line-height: 40px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    background: rgb(96,120,234);
+    background: linear-gradient(90deg, rgba(96,120,234,1) 0%, rgba(29,223,218,1) 100%);
+    border: none;
+}
+
+.cityButton:hover,
+.cityButton:active,
+.cityButton:focus {
+    outline: 0;
+}
+
+.cityButton:hover:before,
+.cityButton:active:before,
+.cityButton:focus:before {
+    content: "";
+    position: absolute;
+    width: calc(100% + 10px);
+    height: 50px;
+    top: -5px;
+    left: -5px;
+    background: none;
+    color: transparent;
+    border-radius: 30px;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+}
+
+#outputCountry {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+}
+
+#outputCountry p {
+    position: relative;
+    margin-left: 50px;
+    margin-bottom: 0;
+    height: 24px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: #1D1D2A;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+#outputCountry p:before {
+    content: "→";
+    position: absolute;
+    left: -33px;
+}
+
+#outputCountry p:empty:before {
+    content: none;
+}
+
+#outputCountry p:first-child {
+    margin-left: 0;
+}
+
+#outputCountry p:first-child:before {
+    content: none;
+}
