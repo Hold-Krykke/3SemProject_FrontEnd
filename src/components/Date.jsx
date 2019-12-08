@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker"; // Required for Date Picker to work.
-// import "react-datepicker/dist/react-datepicker.css"; // Required for Date Picker to work.
-// import "react-datepicker/dist/react-datepicker-cssmodules.css"; // Required for Date Picker to work.
-import { Modal, CardDeck, Card, Button, ModalBody, ModalFooter } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import styles from './DateStyles.css'
-
-// Text or Formats used multiple places throughout code.
-const myDateFormat = "yyyy/MM/dd";
-const warningText = "End date can't be before Start date.";
-const todayButtonText = "Click me to set date to today.";
+import React, {useState} from 'react';
+import DatePicker from 'react-datepicker'; // Required for Date Picker to work.
+import {
+	Modal,
+	CardDeck,
+	Card,
+	Button,
+	ModalBody,
+	ModalFooter
+} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from './DateStyles.css';
 
 /**
  * Make set modalShow to true when you want to show the modal.
@@ -25,8 +25,6 @@ const DateSelector = ({
 	showDatePicker: modalShow,
 	setShowDatePicker: setModalShow
 }) => {
-	// Set this on City Element. Make that onClick () => setModalShow(true);
-
 	return (
 		<>
 			<br />
@@ -62,31 +60,36 @@ const MyModal = ({
 	return (
 		<Modal
 			show={modalShow}
-            onHide={onHide}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-            <Modal.Header>
-                <h1 className="modalHeader">Select Date</h1>
-            </Modal.Header>
-            <ModalBody>
-                <h4>Location: {country} - {city}</h4>
-            </ModalBody>
-            <DateSelectorContent
-                startDate={startDate}
+			onHide={onHide}
+			size="lg"
+			aria-labelledby="contained-modal-title-vcenter"
+			centered>
+			<Modal.Header>
+				<h1 className="modalHeader">Select Date</h1>
+			</Modal.Header>
+			<ModalBody>
+				<h4>
+					Location: {country} - {city}
+				</h4>
+			</ModalBody>
+			<DateSelectorContent
+				startDate={startDate}
 				setStartDate={setStartDate}
-                endDate={endDate}
-                setEndDate={setEndDate}
-            />
-            <button className="dateButton" onClick={() => {
-                if (endDate === undefined) {
-                    setEndDate(startDate);
-                }
-                window.location = '#/result'
-            }}>See Events</button>
-        </Modal>
-    );
+				endDate={endDate}
+				setEndDate={setEndDate}
+			/>
+			<button
+				className="dateButton"
+				onClick={() => {
+					if (endDate === undefined) {
+						setEndDate(startDate);
+					}
+					window.location = '#/result';
+				}}>
+				See Events
+			</button>
+		</Modal>
+	);
 };
 
 /**
@@ -95,17 +98,16 @@ const MyModal = ({
 const DateSelectorContent = ({
 	startDate,
 	setStartDate,
-    endDate,
-    setEndDate
+	endDate,
+	setEndDate
 }) => {
-    const [warning, setWarning] = useState("");
+	const [warning, setWarning] = useState('');
 
-    return (
-        <>
+	return (
+		<>
 			<CardDeck>
 				<Card border="light">
 					<Card.Body>
-						{/* <Card.Title>Select Start Date</Card.Title> */}
 						<MyDateSelector
 							startDate={startDate}
 							setStartDate={setStartDate}
@@ -116,10 +118,6 @@ const DateSelectorContent = ({
 					</Card.Body>
 				</Card>
 			</CardDeck>
-			{/*<br />
-      <NextButton warning={warning} />
-      <br />
-      <BackButton /> It is now a modal, so you just click outside the modal and it is effectively back. */}
 		</>
 	);
 };
@@ -154,69 +152,19 @@ const MyDateSelector = ({
 		}
 	};
 
-	// const handleSelect = date => {
-	//     //onChange is not fired if selecting same date - workaround to fire handleDateChange
-
-	//     if (!selectionComplete && startDate && !endDate && sameDay(date, startDate)) {
-	//         handleDateChange(date);
-	//     }
-	// };
-
 	return (
 		<>
 			<DatePicker
 				selected={startDate}
 				onChange={handleDateChange}
 				// onSelect={handleSelect}
-                selectsEnd={Boolean(startDate)}
-                startDate={startDate}
-                endDate={endDate}
-                inline />
-
-            {/* <div className="date-range">
-                    {startDate ? moment(startDate).format('DD/MM/YYYY') : '??/??/????'} - {endDate ? moment(endDate).format('DD/MM/YYYY') : '??/??/????'}
-                </div> */}
-			{/* </DatePicker> */}
-
-			{/* <DatePicker
-        selected={startDate}
-        onChange={date => {
-          setStartDate(date);
-          if (endDate < date) {
-            setWarning(warningText);
-          } else {
-            setWarning("");
-          }
-        }}
-        inline
-        selectsStart
-        dropdownMode="select"
-        minDate={new Date()}
-        startDate={startDate}
-        endDate={endDate}
-        dateFormat={myDateFormat}
-      /> */}
+				selectsEnd={Boolean(startDate)}
+				startDate={startDate}
+				endDate={endDate}
+				inline
+			/>
 		</>
 	);
-};
-
-// const BackButton = () => {
-//   return <a href="#/city">Back Button</a>;
-// };
-
-/**
- * If End date is set to before Start date, then don't render the "Next" Button.
- */
-const NextButton = ({ warning }) => {
-    if (warning === "") {
-        return (
-            <Button variant="primary" href="#/result">
-                See Events
-			</Button>
-		);
-	} else {
-		return <>{warningText}</>;
-	}
 };
 
 export default DateSelector;
